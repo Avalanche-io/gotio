@@ -1,7 +1,7 @@
 # gotio
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/mrjoshuak/gotio.svg)](https://pkg.go.dev/github.com/mrjoshuak/gotio)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mrjoshuak/gotio)](https://goreportcard.com/report/github.com/mrjoshuak/gotio)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Avalanche-io/gotio.svg)](https://pkg.go.dev/github.com/Avalanche-io/gotio)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Avalanche-io/gotio)](https://goreportcard.com/report/github.com/Avalanche-io/gotio)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 A pure Go implementation of [OpenTimelineIO](http://opentimeline.io/) - the interchange format and API for editorial cut information.
@@ -21,7 +21,7 @@ gotio is a native Go implementation of OpenTimelineIO (OTIO), providing full com
 ## Installation
 
 ```bash
-go get github.com/mrjoshuak/gotio
+go get github.com/Avalanche-io/gotio
 ```
 
 ## Quick Start
@@ -35,7 +35,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/mrjoshuak/gotio/opentimelineio"
+    "github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 func main() {
@@ -62,8 +62,8 @@ func main() {
 package main
 
 import (
-    "github.com/mrjoshuak/gotio/opentime"
-    "github.com/mrjoshuak/gotio/opentimelineio"
+    "github.com/Avalanche-io/gotio/opentime"
+    "github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 func main() {
@@ -119,7 +119,7 @@ package main
 import (
     "fmt"
 
-    "github.com/mrjoshuak/gotio/opentime"
+    "github.com/Avalanche-io/gotio/opentime"
 )
 
 func main() {
@@ -152,7 +152,7 @@ func main() {
 ## Package Structure
 
 ```
-github.com/mrjoshuak/gotio/
+github.com/Avalanche-io/gotio/
 ├── opentime/           # Time representation (RationalTime, TimeRange, TimeTransform)
 ├── opentimelineio/     # Core OTIO types (Timeline, Track, Stack, Clip, etc.)
 └── algorithms/         # Timeline manipulation algorithms
