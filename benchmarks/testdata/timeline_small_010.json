@@ -1,0 +1,1105 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "name": "Timeline_small_10",
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "value": 86400,
+    "rate": 24
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "name": "tracks",
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "V1",
+        "kind": "Video",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0000",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 0,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_0",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00000.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 0
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0001",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 24,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_1",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00001.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 1
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0002",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_2",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00002.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 2
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0003",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 72,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_3",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00003.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 3
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0004",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 96,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_4",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00004.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 4
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0005",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 120,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_5",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00005.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 0
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0006",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 144,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_6",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00006.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 1
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0007",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 168,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_7",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00007.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 2
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0008",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 192,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_8",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00008.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 3
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0009",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 216,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_9",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00009.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 4
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          }
+        ],
+        "metadata": {
+          "locked": false,
+          "muted": false,
+          "track_index": 0
+        }
+      },
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "A1",
+        "kind": "Audio",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0000",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 0,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_0",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00000.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 0
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0001",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 24,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_1",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00001.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 1
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0002",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_2",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00002.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 2
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0003",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 72,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_3",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00003.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 3
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0004",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 96,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_4",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00004.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 4
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0005",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 120,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_5",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00005.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 0
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0006",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 144,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_6",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00006.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 1
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0007",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 168,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_7",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00007.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 2
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0008",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 192,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_8",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00008.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 3
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          },
+          {
+            "OTIO_SCHEMA": "Clip.2",
+            "name": "Shot_0009",
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 216,
+                "rate": 24
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 48,
+                "rate": 24
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "media_9",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 24
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 1000,
+                  "rate": 24
+                }
+              },
+              "target_url": "file:///media/project/footage/clip_00009.mov",
+              "metadata": {
+                "codec": "ProRes422HQ",
+                "colorspace": "Rec709",
+                "resolution": "1920x1080"
+              }
+            },
+            "metadata": {
+              "approved": true,
+              "color_tag": "green",
+              "frame_rate": 24,
+              "notes": "This is a sample note for the clip with some additional text to make it more realistic.",
+              "scene": "Scene_0",
+              "shot_type": "wide",
+              "take": 4
+            },
+            "active_media_reference_key": "DEFAULT_MEDIA",
+            "markers": [],
+            "effects": [],
+            "enabled": true
+          }
+        ],
+        "metadata": {
+          "locked": false,
+          "muted": false,
+          "track_index": 0
+        }
+      }
+    ],
+    "metadata": {}
+  },
+  "metadata": {
+    "created_by": "json-benchmark",
+    "created_date": "2025-12-22T02:21:36-06:00",
+    "project": "Benchmark Project"
+  }
+}

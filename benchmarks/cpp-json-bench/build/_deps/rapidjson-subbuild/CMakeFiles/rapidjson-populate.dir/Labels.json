@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/CMakeFiles/rapidjson-populate"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/CMakeFiles/rapidjson-populate.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/CMakeFiles/rapidjson-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-build.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-download.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-install.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-test.rule"
+		},
+		{
+			"file" : "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/_deps/rapidjson-subbuild/rapidjson-populate-prefix/src/rapidjson-populate-stamp/rapidjson-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"rapidjson-populate"
+		],
+		"name" : "rapidjson-populate"
+	}
+}

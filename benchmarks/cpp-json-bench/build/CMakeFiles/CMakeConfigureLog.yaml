@@ -1,0 +1,2086 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/uname"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/uname"
+      - "/Users/joshua/.cache/lm-studio/bin/uname"
+      - "/Users/joshua/.local/bin/uname"
+      - "/opt/local/USD/bin/uname"
+      - "/opt/homebrew/opt/bison/bin/uname"
+      - "/opt/homebrew/opt/llvm/bin/uname"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/uname"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/uname"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/uname"
+      - "/Users/joshua/mcp/uname"
+      - "/opt/homebrew/bin/uname"
+      - "/Users/joshua/bin/uname"
+      - "/usr/local/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Darwin - 25.3.0 - arm64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/gmake"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/gmake"
+      - "/Users/joshua/.cache/lm-studio/bin/gmake"
+      - "/Users/joshua/.local/bin/gmake"
+      - "/opt/local/USD/bin/gmake"
+      - "/opt/homebrew/opt/bison/bin/gmake"
+      - "/opt/homebrew/opt/llvm/bin/gmake"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/gmake"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/gmake"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/gmake"
+      - "/Users/joshua/mcp/gmake"
+      - "/opt/homebrew/bin/gmake"
+      - "/Users/joshua/bin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/bin/gmake"
+      - "/bin/gmake"
+      - "/usr/sbin/gmake"
+      - "/sbin/gmake"
+      - "/System/Cryptexes/App/usr/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/gmake"
+      - "/opt/pmk/env/global/bin/gmake"
+      - "/Library/Apple/usr/bin/gmake"
+      - "/Library/TeX/texbin/gmake"
+      - "/Applications/VMware Fusion.app/Contents/Public/gmake"
+      - "/usr/local/share/dotnet/gmake"
+      - "/Users/joshua/.dotnet/tools/gmake"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/gmake"
+      - "/Users/joshua/.rvm/bin/gmake"
+      - "/usr/local/xx/d/go/bin/gmake"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/gmake"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/make"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/make"
+      - "/Users/joshua/.cache/lm-studio/bin/make"
+      - "/Users/joshua/.local/bin/make"
+      - "/opt/local/USD/bin/make"
+      - "/opt/homebrew/opt/bison/bin/make"
+      - "/opt/homebrew/opt/llvm/bin/make"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/make"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/make"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/make"
+      - "/Users/joshua/mcp/make"
+      - "/opt/homebrew/bin/make"
+      - "/Users/joshua/bin/make"
+      - "/usr/local/bin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:73 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER"
+    description: "CXX compiler"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "c++"
+      - "g++"
+      - "cl"
+      - "bcc"
+      - "icpx"
+      - "icx"
+      - "clang++"
+    candidate_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/c++"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/c++"
+      - "/Users/joshua/.cache/lm-studio/bin/c++"
+      - "/Users/joshua/.local/bin/c++"
+      - "/opt/local/USD/bin/c++"
+      - "/opt/homebrew/opt/bison/bin/c++"
+      - "/opt/homebrew/opt/llvm/bin/c++"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/c++"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/c++"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/c++"
+      - "/Users/joshua/mcp/c++"
+      - "/opt/homebrew/bin/c++"
+      - "/Users/joshua/bin/c++"
+      - "/usr/local/bin/c++"
+    found: "/usr/bin/c++"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/opt/homebrew/share/cmake/Modules/"
+    found: "/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is AppleClang, found in:
+        /Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/4.2.1/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler apple sysroot: "/usr/bin/c++" "-E" "apple-sdk.cpp"
+        # 1 "apple-sdk.cpp"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 514 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.cpp" 2
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 89 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 90 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h" 1 3 4
+        # 91 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 207 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 196 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 197 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 33 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 34 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 2 3 4
+        # 198 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 1 3 4
+        # 34 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 3 4
+        # 1 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 35 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 2 3 4
+        # 199 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 208 "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.cpp" 2
+        
+        
+      Found apple sysroot: /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/ar"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/usr/bin/objcopy"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/objcopy"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/objcopy"
+      - "/Users/joshua/.cache/lm-studio/bin/objcopy"
+      - "/Users/joshua/.local/bin/objcopy"
+      - "/opt/local/USD/bin/objcopy"
+      - "/opt/homebrew/opt/bison/bin/objcopy"
+      - "/opt/homebrew/opt/llvm/bin/objcopy"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/objcopy"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/objcopy"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/objcopy"
+      - "/Users/joshua/mcp/objcopy"
+      - "/opt/homebrew/bin/objcopy"
+      - "/Users/joshua/bin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/bin/objcopy"
+      - "/usr/sbin/objcopy"
+      - "/sbin/objcopy"
+      - "/System/Cryptexes/App/usr/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/objcopy"
+      - "/opt/pmk/env/global/bin/objcopy"
+      - "/Library/Apple/usr/bin/objcopy"
+      - "/Library/TeX/texbin/objcopy"
+      - "/Applications/VMware Fusion.app/Contents/Public/objcopy"
+      - "/usr/local/share/dotnet/objcopy"
+      - "/Users/joshua/.dotnet/tools/objcopy"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/objcopy"
+      - "/Users/joshua/.rvm/bin/objcopy"
+      - "/usr/local/xx/d/go/bin/objcopy"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/objcopy"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/usr/bin/readelf"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/readelf"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/readelf"
+      - "/Users/joshua/.cache/lm-studio/bin/readelf"
+      - "/Users/joshua/.local/bin/readelf"
+      - "/opt/local/USD/bin/readelf"
+      - "/opt/homebrew/opt/bison/bin/readelf"
+      - "/opt/homebrew/opt/llvm/bin/readelf"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/readelf"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/readelf"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/readelf"
+      - "/Users/joshua/mcp/readelf"
+      - "/opt/homebrew/bin/readelf"
+      - "/Users/joshua/bin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/bin/readelf"
+      - "/usr/sbin/readelf"
+      - "/sbin/readelf"
+      - "/System/Cryptexes/App/usr/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/readelf"
+      - "/opt/pmk/env/global/bin/readelf"
+      - "/Library/Apple/usr/bin/readelf"
+      - "/Library/TeX/texbin/readelf"
+      - "/Applications/VMware Fusion.app/Contents/Public/readelf"
+      - "/usr/local/share/dotnet/readelf"
+      - "/Users/joshua/.dotnet/tools/readelf"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/readelf"
+      - "/Users/joshua/.rvm/bin/readelf"
+      - "/usr/local/xx/d/go/bin/readelf"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/readelf"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/dlltool"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/dlltool"
+      - "/Users/joshua/.cache/lm-studio/bin/dlltool"
+      - "/Users/joshua/.local/bin/dlltool"
+      - "/opt/local/USD/bin/dlltool"
+      - "/opt/homebrew/opt/bison/bin/dlltool"
+      - "/opt/homebrew/opt/llvm/bin/dlltool"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/dlltool"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/dlltool"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/dlltool"
+      - "/Users/joshua/mcp/dlltool"
+      - "/opt/homebrew/bin/dlltool"
+      - "/Users/joshua/bin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/sbin/dlltool"
+      - "/System/Cryptexes/App/usr/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/dlltool"
+      - "/opt/pmk/env/global/bin/dlltool"
+      - "/Library/Apple/usr/bin/dlltool"
+      - "/Library/TeX/texbin/dlltool"
+      - "/Applications/VMware Fusion.app/Contents/Public/dlltool"
+      - "/usr/local/share/dotnet/dlltool"
+      - "/Users/joshua/.dotnet/tools/dlltool"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/dlltool"
+      - "/Users/joshua/.rvm/bin/dlltool"
+      - "/usr/local/xx/d/go/bin/dlltool"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/usr/bin/addr2line"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/addr2line"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/addr2line"
+      - "/Users/joshua/.cache/lm-studio/bin/addr2line"
+      - "/Users/joshua/.local/bin/addr2line"
+      - "/opt/local/USD/bin/addr2line"
+      - "/opt/homebrew/opt/bison/bin/addr2line"
+      - "/opt/homebrew/opt/llvm/bin/addr2line"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/addr2line"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/addr2line"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/addr2line"
+      - "/Users/joshua/mcp/addr2line"
+      - "/opt/homebrew/bin/addr2line"
+      - "/Users/joshua/bin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/bin/addr2line"
+      - "/usr/sbin/addr2line"
+      - "/sbin/addr2line"
+      - "/System/Cryptexes/App/usr/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/addr2line"
+      - "/opt/pmk/env/global/bin/addr2line"
+      - "/Library/Apple/usr/bin/addr2line"
+      - "/Library/TeX/texbin/addr2line"
+      - "/Applications/VMware Fusion.app/Contents/Public/addr2line"
+      - "/usr/local/share/dotnet/addr2line"
+      - "/Users/joshua/.dotnet/tools/addr2line"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/addr2line"
+      - "/Users/joshua/.rvm/bin/addr2line"
+      - "/usr/local/xx/d/go/bin/addr2line"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/addr2line"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/usr/bin/tapi"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/tapi"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/tapi"
+      - "/Users/joshua/.cache/lm-studio/bin/tapi"
+      - "/Users/joshua/.local/bin/tapi"
+      - "/opt/local/USD/bin/tapi"
+      - "/opt/homebrew/opt/bison/bin/tapi"
+      - "/opt/homebrew/opt/llvm/bin/tapi"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/tapi"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/tapi"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/tapi"
+      - "/Users/joshua/mcp/tapi"
+      - "/opt/homebrew/bin/tapi"
+      - "/Users/joshua/bin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/bin/tapi"
+      - "/usr/sbin/tapi"
+      - "/sbin/tapi"
+      - "/System/Cryptexes/App/usr/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/tapi"
+      - "/opt/pmk/env/global/bin/tapi"
+      - "/Library/Apple/usr/bin/tapi"
+      - "/Library/TeX/texbin/tapi"
+      - "/Applications/VMware Fusion.app/Contents/Public/tapi"
+      - "/usr/local/share/dotnet/tapi"
+      - "/Users/joshua/.dotnet/tools/tapi"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/tapi"
+      - "/Users/joshua/.rvm/bin/tapi"
+      - "/usr/local/xx/d/go/bin/tapi"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "install_name_tool"
+    candidate_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+    searched_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/install_name_tool"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/install_name_tool"
+      - "/Users/joshua/.cache/lm-studio/bin/install_name_tool"
+      - "/Users/joshua/.local/bin/install_name_tool"
+      - "/opt/local/USD/bin/install_name_tool"
+      - "/opt/homebrew/opt/bison/bin/install_name_tool"
+      - "/opt/homebrew/opt/llvm/bin/install_name_tool"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/install_name_tool"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/install_name_tool"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/install_name_tool"
+      - "/Users/joshua/mcp/install_name_tool"
+      - "/opt/homebrew/bin/install_name_tool"
+      - "/Users/joshua/bin/install_name_tool"
+      - "/usr/local/bin/install_name_tool"
+    found: "/usr/bin/install_name_tool"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7"
+      binary: "/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_625be/fast
+        /Applications/Xcode-beta.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_625be.dir/build.make CMakeFiles/cmTC_625be.dir/build
+        Building CXX object CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 17.0.0 (clang-1700.3.10.950)
+        Target: arm64-apple-darwin25.3.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+        ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"
+         "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.0 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7 -target-linker-version 1215 -v -fcoverage-compilation-dir=/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7 -resource-dir /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/opt/homebrew/include -I/usr/local/include -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 17.0.0 (clang-1700.3.10.950) default target arm64-apple-darwin25.3.0
+        ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/homebrew/include
+         /usr/local/include
+         /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1
+         /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include
+         /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
+         /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+         /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
+        End of search list.
+        Linking CXX executable cmTC_625be
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_625be.dir/link.txt --verbose=1
+        Apple clang version 17.0.0 (clang-1700.3.10.950)
+        Target: arm64-apple-darwin25.3.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.0 -syslibroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_625be -L/opt/homebrew/lib -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld PROJECT:ld-1215
+        BUILD 02:06:12 Jun 15 2025
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.5.6)
+        Library search paths:
+        	/opt/homebrew/lib
+        	/usr/local/lib
+        	/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib
+        	/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
+        Framework search paths:
+        	/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_625be
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "arm64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/opt/homebrew/include]
+          add: [/usr/local/include]
+          add: [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+          add: [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+          add: [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+          add: [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/opt/homebrew/include] ==> [/opt/homebrew/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1] ==> [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        collapse include dir [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include] ==> [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        collapse include dir [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include] ==> [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/opt/homebrew/include;/usr/local/include;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1;/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include;/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_625be/fast]
+        ignore line: [/Applications/Xcode-beta.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_625be.dir/build.make CMakeFiles/cmTC_625be.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.3.10.950)]
+        ignore line: [Target: arm64-apple-darwin25.3.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"]
+        ignore line: [ "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.0 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7 -target-linker-version 1215 -v -fcoverage-compilation-dir=/Users/joshua/ws/active/gotio/benchmarks/cpp-json-bench/build/CMakeFiles/CMakeScratch/TryCompile-79m1t7 -resource-dir /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/opt/homebrew/include -I/usr/local/include -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 17.0.0 (clang-1700.3.10.950) default target arm64-apple-darwin25.3.0]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /opt/homebrew/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [ /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_625be]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_625be.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.3.10.950)]
+        ignore line: [Target: arm64-apple-darwin25.3.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 26.0.0 26.0 -syslibroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_625be -L/opt/homebrew/lib -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+          arg [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [26.0.0] ==> ignore
+          arg [26.0] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-enable-linkonceodr-outlining] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_625be] ==> ignore
+          arg [-L/opt/homebrew/lib] ==> dir [/opt/homebrew/lib]
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_625be.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'CXX': /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+        Library search paths: [;/opt/homebrew/lib;/usr/local/lib;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        Framework search paths: [;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        remove lib [System]
+        remove lib [/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib] ==> [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib]
+        collapse library dir [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift] ==> [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        collapse framework dir [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks] ==> [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: [/opt/homebrew/lib;/usr/local/lib;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        implicit fwks: [/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld PROJECT:ld-1215
+      BUILD 02:06:12 Jun 15 2025
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.5.6)
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/FindGit.cmake:111 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:1884 (find_package)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:1619 (__FetchContent_populateSubbuild)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:2155:EVAL:2 (__FetchContent_doPopulation)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:2155 (cmake_language)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:1988:EVAL:1 (__FetchContent_Populate)"
+      - "/opt/homebrew/share/cmake/Modules/FetchContent.cmake:1988 (cmake_language)"
+      - "CMakeLists.txt:26 (FetchContent_Populate)"
+    mode: "program"
+    variable: "GIT_EXECUTABLE"
+    description: "Git command line client"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "git"
+    candidate_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/joshua/.cache/lm-studio/bin/"
+      - "/Users/joshua/.local/bin/"
+      - "/opt/local/USD/bin/"
+      - "/opt/homebrew/opt/bison/bin/"
+      - "/opt/homebrew/opt/llvm/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/"
+      - "/Users/joshua/mcp/"
+      - "/opt/homebrew/bin/"
+      - "/Users/joshua/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Library/TeX/texbin/"
+      - "/Applications/VMware Fusion.app/Contents/Public/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/joshua/.dotnet/tools/"
+      - "/Applications/iTerm.app/Contents/Resources/utilities/"
+      - "/Users/joshua/.rvm/bin/"
+      - "/usr/local/xx/d/go/bin/"
+      - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/"
+      - "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/bin/"
+      - "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sbin/"
+      - "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/opt/homebrew/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/"
+      - "/usr/bin/"
+      - "/usr/sbin/"
+      - "/usr/"
+      - "/bin/"
+      - "/sbin/"
+      - "/usr/X11R6/bin/"
+      - "/usr/X11R6/sbin/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/bin/"
+      - "/usr/pkg/sbin/"
+      - "/usr/pkg/"
+      - "/opt/bin/"
+      - "/opt/sbin/"
+      - "/opt/"
+      - "/sw/bin/"
+      - "/sw/sbin/"
+      - "/sw/"
+      - "/opt/local/bin/"
+      - "/opt/local/sbin/"
+      - "/opt/local/"
+      - "/Users/joshua/Applications/"
+      - "/Applications/"
+      - "/Applications/Xcode-beta.app/Contents/Applications/"
+      - "/Applications/Xcode-beta.app/Contents/Developer/Applications/"
+    searched_directories:
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/git"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/git"
+      - "/Users/joshua/.cache/lm-studio/bin/git"
+      - "/Users/joshua/.local/bin/git"
+      - "/opt/local/USD/bin/git"
+      - "/opt/homebrew/opt/bison/bin/git"
+      - "/opt/homebrew/opt/llvm/bin/git"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin/git"
+      - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin/git"
+      - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin/git"
+      - "/Users/joshua/mcp/git"
+    found: "/opt/homebrew/bin/git"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/Caskroom/miniconda/base/bin"
+        - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/joshua/.cache/lm-studio/bin"
+        - "/Users/joshua/.local/bin"
+        - "/opt/local/USD/bin"
+        - "/opt/homebrew/opt/bison/bin"
+        - "/opt/homebrew/opt/llvm/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6/bin"
+        - "/Users/joshua/.rvm/gems/ruby-2.6.6@global/bin"
+        - "/Users/joshua/.rvm/rubies/ruby-2.6.6/bin"
+        - "/Users/joshua/mcp"
+        - "/opt/homebrew/bin"
+        - "/Users/joshua/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Library/TeX/texbin"
+        - "/Applications/VMware Fusion.app/Contents/Public"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+        - "/Applications/iTerm.app/Contents/Resources/utilities"
+        - "/Users/joshua/.rvm/bin"
+        - "/usr/local/xx/d/go/bin"
+        - "/Users/joshua/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS"
+        - "/Users/joshua/.cache/lm-studio/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Users/joshua/Applications"
+        - "/Applications"
+        - "/Applications/Xcode-beta.app/Contents/Applications"
+        - "/Applications/Xcode-beta.app/Contents/Developer/Applications"
+...
