@@ -8,7 +8,7 @@ import (
 	"fmt"
 
 	"github.com/bytedance/sonic"
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // SanitizeJSON replaces Python's non-standard JSON values (Inf, NaN, -Infinity) with null.

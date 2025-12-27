@@ -18,8 +18,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/mrjoshuak/gotio/algorithms"
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/algorithms"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 func main() {

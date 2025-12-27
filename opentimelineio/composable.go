@@ -4,7 +4,7 @@
 package opentimelineio
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // Composable is the interface for items that can be composed in a composition.

@@ -6,7 +6,7 @@ package opentimelineio
 import (
 	"reflect"
 
-	"github.com/mrjoshuak/gotio/internal/jsonenc"
+	"github.com/Avalanche-io/gotio/internal/jsonenc"
 )
 
 // encodeClipFast encodes a Clip to JSON using the streaming encoder.

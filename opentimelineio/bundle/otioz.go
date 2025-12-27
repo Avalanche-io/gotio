@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // ReadOTIOZ reads a .otioz bundle and returns the timeline.

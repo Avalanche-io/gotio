@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // =============================================================================

@@ -4,8 +4,8 @@
 package algorithms
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // Fill places an item into a gap using 3/4-point edit logic.

@@ -1,4 +1,4 @@
-module github.com/mrjoshuak/gotio
+module github.com/Avalanche-io/gotio
 
 go 1.25.5
 

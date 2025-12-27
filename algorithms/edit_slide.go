@@ -4,8 +4,8 @@
 package algorithms
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // Slide moves an item's position by adjusting the previous item's duration.

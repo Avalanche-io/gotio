@@ -4,7 +4,7 @@
 package opentimelineio
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // Box2d represents a 2D bounding box.

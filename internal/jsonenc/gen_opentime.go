@@ -5,7 +5,7 @@
 package jsonenc
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 	"reflect"
 )
 

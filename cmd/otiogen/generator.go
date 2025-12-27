@@ -154,10 +154,10 @@ import (
 	{{- if not (isOpentime .)}}{{$hasOTIO = true}}{{end}}
 	{{- end}}
 	{{- if $hasOpentime}}
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 	{{- end}}
 	{{- if $hasOTIO}}
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 	{{- end}}
 )
 
@@ -283,10 +283,10 @@ import (
 	{{- if not (isOpentime .)}}{{$hasOTIO = true}}{{end}}
 	{{- end}}
 	{{- if $hasOpentime}}
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 	{{- end}}
 	{{- if $hasOTIO}}
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 	{{- end}}
 )
 

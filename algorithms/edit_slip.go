@@ -4,8 +4,8 @@
 package algorithms
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // Slip moves an item's playhead through source media without changing position or duration.

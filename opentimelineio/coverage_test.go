@@ -6,7 +6,7 @@ package opentimelineio
 import (
 	"testing"
 
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // Tests for CompositionBase methods

@@ -6,7 +6,7 @@ package opentimelineio
 import (
 	"reflect"
 
-	"github.com/mrjoshuak/gotio/internal/jsonenc"
+	"github.com/Avalanche-io/gotio/internal/jsonenc"
 )
 
 // encodeMarkerFast encodes a Marker to JSON using the streaming encoder.

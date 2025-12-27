@@ -6,7 +6,7 @@ package opentimelineio
 import (
 	"encoding/json"
 
-	"github.com/mrjoshuak/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentime"
 )
 
 // TimelineSchema is the schema for Timeline.

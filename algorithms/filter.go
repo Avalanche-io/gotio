@@ -6,7 +6,7 @@ package algorithms
 import (
 	"reflect"
 
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // FilterFunc is a function that filters/transforms a composable.

@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/mrjoshuak/gotio/internal/jsonenc"
+	"github.com/Avalanche-io/gotio/internal/jsonenc"
 )
 
 // SerializableObject is the base interface for all serializable types.

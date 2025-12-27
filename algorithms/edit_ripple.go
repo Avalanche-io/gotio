@@ -4,8 +4,8 @@
 package algorithms
 
 import (
-	"github.com/mrjoshuak/gotio/opentime"
-	"github.com/mrjoshuak/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio/opentime"
+	"github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 // Ripple adjusts an item's source range with clamping to available media.
