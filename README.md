@@ -35,17 +35,17 @@ import (
     "fmt"
     "log"
 
-    "github.com/Avalanche-io/gotio/opentimelineio"
+    "github.com/Avalanche-io/gotio"
 )
 
 func main() {
     // Load a timeline from an OTIO file
-    obj, err := opentimelineio.FromJSONFile("project.otio")
+    obj, err := gotio.FromJSONFile("project.otio")
     if err != nil {
         log.Fatal(err)
     }
 
-    timeline := obj.(*opentimelineio.Timeline)
+    timeline := obj.(*gotio.Timeline)
     fmt.Printf("Timeline: %s\n", timeline.Name())
 
     // Find all clips in the timeline
@@ -62,16 +62,18 @@ func main() {
 package main
 
 import (
+    "fmt"
+
+    "github.com/Avalanche-io/gotio"
     "github.com/Avalanche-io/gotio/opentime"
-    "github.com/Avalanche-io/gotio/opentimelineio"
 )
 
 func main() {
     // Create a new timeline
-    timeline := opentimelineio.NewTimeline("My Project", nil, nil)
+    timeline := gotio.NewTimeline("My Project", nil, nil)
 
     // Create a video track
-    track := opentimelineio.NewTrack("V1", nil, opentimelineio.TrackKindVideo, nil, nil)
+    track := gotio.NewTrack("V1", nil, gotio.TrackKindVideo, nil, nil)
     timeline.Tracks().AppendChild(track)
 
     // Create clips with media references
@@ -83,7 +85,7 @@ func main() {
         )
 
         // Create an external reference to the media file
-        ref := opentimelineio.NewExternalReference(
+        ref := gotio.NewExternalReference(
             "",
             "file:///path/to/media/"+file,
             &availableRange,
@@ -96,7 +98,7 @@ func main() {
             opentime.NewRationalTime(80, 24),
         )
 
-        clip := opentimelineio.NewClip(
+        clip := gotio.NewClip(
             fmt.Sprintf("Shot %d", i+1),
             ref,
             &sourceRange,
@@ -107,7 +109,7 @@ func main() {
     }
 
     // Write to file
-    opentimelineio.ToJSONFile(timeline, "output.otio", "  ")
+    gotio.ToJSONFile(timeline, "output.otio", "  ")
 }
 ```
 
@@ -153,10 +155,19 @@ func main() {
 
 ```
 github.com/Avalanche-io/gotio/
+├── (root)              # Core OTIO types (Timeline, Track, Stack, Clip, etc.)
 ├── opentime/           # Time representation (RationalTime, TimeRange, TimeTransform)
-├── opentimelineio/     # Core OTIO types (Timeline, Track, Stack, Clip, etc.)
-└── algorithms/         # Timeline manipulation algorithms
+├── algorithms/         # Timeline manipulation algorithms
+├── bundle/             # OTIOZ bundle support
+├── medialinker/        # Media linking and resolution
+└── adapters/           # Python adapter bridge for format conversion
 ```
+
+### gotio (root package)
+
+The root `gotio` package provides the core OTIO data model:
+
+- Import with `import "github.com/Avalanche-io/gotio"`
 
 ### opentime
 
@@ -166,9 +177,7 @@ The `opentime` package provides types for representing time:
 - **TimeRange** - A range of time with start time and duration
 - **TimeTransform** - A transformation that can be applied to times (offset, scale)
 
-### opentimelineio
-
-The `opentimelineio` package provides the core OTIO data model:
+### Core Types
 
 **Compositions:**
 - **Timeline** - The root container with tracks and global start time
