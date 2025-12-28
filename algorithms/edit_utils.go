@@ -5,13 +5,13 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // itemSourceRange returns the source range for an item.
 // If the item has a source range set, it returns that.
 // Otherwise it falls back to the item's available range.
-func itemSourceRange(item opentimelineio.Item) (opentime.TimeRange, error) {
+func itemSourceRange(item gotio.Item) (opentime.TimeRange, error) {
 	if sr := item.SourceRange(); sr != nil {
 		return *sr, nil
 	}
@@ -21,7 +21,7 @@ func itemSourceRange(item opentimelineio.Item) (opentime.TimeRange, error) {
 // itemAtTime finds the item at a specific time in a composition.
 // Returns the item, its index, and the item's range in the composition.
 // Returns nil, -1, zero range if no item is found at the time.
-func itemAtTime(comp opentimelineio.Composition, time opentime.RationalTime) (opentimelineio.Item, int, opentime.TimeRange, error) {
+func itemAtTime(comp gotio.Composition, time opentime.RationalTime) (gotio.Item, int, opentime.TimeRange, error) {
 	children := comp.Children()
 	for i, child := range children {
 		childRange, err := comp.RangeOfChildAtIndex(i)
@@ -29,7 +29,7 @@ func itemAtTime(comp opentimelineio.Composition, time opentime.RationalTime) (op
 			continue
 		}
 		if childRange.Contains(time) {
-			if item, ok := child.(opentimelineio.Item); ok {
+			if item, ok := child.(gotio.Item); ok {
 				return item, i, childRange, nil
 			}
 		}
@@ -39,8 +39,8 @@ func itemAtTime(comp opentimelineio.Composition, time opentime.RationalTime) (op
 
 // itemsInRange finds all items that intersect a time range.
 // Returns the items, their indices, and their ranges.
-func itemsInRange(comp opentimelineio.Composition, timeRange opentime.TimeRange) ([]opentimelineio.Item, []int, []opentime.TimeRange, error) {
-	var items []opentimelineio.Item
+func itemsInRange(comp gotio.Composition, timeRange opentime.TimeRange) ([]gotio.Item, []int, []opentime.TimeRange, error) {
+	var items []gotio.Item
 	var indices []int
 	var ranges []opentime.TimeRange
 
@@ -51,7 +51,7 @@ func itemsInRange(comp opentimelineio.Composition, timeRange opentime.TimeRange)
 			continue
 		}
 		if timeRange.Intersects(childRange, opentime.DefaultEpsilon) {
-			if item, ok := child.(opentimelineio.Item); ok {
+			if item, ok := child.(gotio.Item); ok {
 				items = append(items, item)
 				indices = append(indices, i)
 				ranges = append(ranges, childRange)
@@ -62,13 +62,13 @@ func itemsInRange(comp opentimelineio.Composition, timeRange opentime.TimeRange)
 }
 
 // transitionsInRange finds all transitions that intersect a time range.
-func transitionsInRange(comp opentimelineio.Composition, timeRange opentime.TimeRange) ([]*opentimelineio.Transition, []int, error) {
-	var transitions []*opentimelineio.Transition
+func transitionsInRange(comp gotio.Composition, timeRange opentime.TimeRange) ([]*gotio.Transition, []int, error) {
+	var transitions []*gotio.Transition
 	var indices []int
 
 	children := comp.Children()
 	for i, child := range children {
-		tr, ok := child.(*opentimelineio.Transition)
+		tr, ok := child.(*gotio.Transition)
 		if !ok {
 			continue
 		}
@@ -86,7 +86,7 @@ func transitionsInRange(comp opentimelineio.Composition, timeRange opentime.Time
 
 // removeTransitionsInRange removes all transitions that intersect a time range.
 // Returns true if any transitions were removed.
-func removeTransitionsInRange(comp opentimelineio.Composition, timeRange opentime.TimeRange) (bool, error) {
+func removeTransitionsInRange(comp gotio.Composition, timeRange opentime.TimeRange) (bool, error) {
 	transitions, indices, err := transitionsInRange(comp, timeRange)
 	if err != nil {
 		return false, err
@@ -109,12 +109,12 @@ func removeTransitionsInRange(comp opentimelineio.Composition, timeRange opentim
 // Returns the two resulting items (before and after the split point).
 // If the time is at the item's start or end, returns the original item and nil.
 func splitItemAtTime(
-	comp opentimelineio.Composition,
-	item opentimelineio.Item,
+	comp gotio.Composition,
+	item gotio.Item,
 	itemIndex int,
 	itemRange opentime.TimeRange,
 	splitTime opentime.RationalTime,
-) (opentimelineio.Item, opentimelineio.Item, error) {
+) (gotio.Item, gotio.Item, error) {
 	// Check if split is at boundaries
 	if splitTime.Cmp(itemRange.StartTime()) <= 0 {
 		return nil, item, nil
@@ -136,7 +136,7 @@ func splitItemAtTime(
 	sourceOffset := offsetInItem.RescaledTo(sourceRange.StartTime().Rate())
 
 	// Create the first part (before split)
-	firstPart := item.Clone().(opentimelineio.Item)
+	firstPart := item.Clone().(gotio.Item)
 	firstRange := opentime.NewTimeRange(
 		sourceRange.StartTime(),
 		sourceOffset,
@@ -144,7 +144,7 @@ func splitItemAtTime(
 	firstPart.SetSourceRange(&firstRange)
 
 	// Create the second part (after split)
-	secondPart := item.Clone().(opentimelineio.Item)
+	secondPart := item.Clone().(gotio.Item)
 	secondStart := sourceRange.StartTime().Add(sourceOffset)
 	secondDuration := sourceRange.Duration().Sub(sourceOffset)
 	secondRange := opentime.NewTimeRange(secondStart, secondDuration)
@@ -155,7 +155,7 @@ func splitItemAtTime(
 
 // clampToAvailableRange clamps a source range to the item's available range.
 // Returns the clamped range, or the original range if no available range exists.
-func clampToAvailableRange(item opentimelineio.Item, sourceRange opentime.TimeRange) opentime.TimeRange {
+func clampToAvailableRange(item gotio.Item, sourceRange opentime.TimeRange) opentime.TimeRange {
 	availableRange, err := item.AvailableRange()
 	if err != nil {
 		return sourceRange
@@ -183,7 +183,7 @@ func clampToAvailableRange(item opentimelineio.Item, sourceRange opentime.TimeRa
 }
 
 // compositionDuration returns the duration of a composition.
-func compositionDuration(comp opentimelineio.Composition) (opentime.RationalTime, error) {
+func compositionDuration(comp gotio.Composition) (opentime.RationalTime, error) {
 	children := comp.Children()
 	if len(children) == 0 {
 		return opentime.RationalTime{}, nil
@@ -208,7 +208,7 @@ func compositionDuration(comp opentimelineio.Composition) (opentime.RationalTime
 }
 
 // compositionEndTime returns the end time of a composition.
-func compositionEndTime(comp opentimelineio.Composition) (opentime.RationalTime, error) {
+func compositionEndTime(comp gotio.Composition) (opentime.RationalTime, error) {
 	dur, err := compositionDuration(comp)
 	if err != nil {
 		return opentime.RationalTime{}, err
@@ -219,16 +219,16 @@ func compositionEndTime(comp opentimelineio.Composition) (opentime.RationalTime,
 // createFillGap creates a gap with the specified duration.
 // If fillTemplate is provided and is a Gap, it is cloned and its duration is set.
 // Otherwise, a new Gap is created.
-func createFillGap(duration opentime.RationalTime, fillTemplate opentimelineio.Item) *opentimelineio.Gap {
+func createFillGap(duration opentime.RationalTime, fillTemplate gotio.Item) *gotio.Gap {
 	if fillTemplate != nil {
-		if gap, ok := fillTemplate.(*opentimelineio.Gap); ok {
-			cloned := gap.Clone().(*opentimelineio.Gap)
+		if gap, ok := fillTemplate.(*gotio.Gap); ok {
+			cloned := gap.Clone().(*gotio.Gap)
 			sr := opentime.NewTimeRange(opentime.RationalTime{}, duration)
 			cloned.SetSourceRange(&sr)
 			return cloned
 		}
 	}
-	return opentimelineio.NewGapWithDuration(duration)
+	return gotio.NewGapWithDuration(duration)
 }
 
 // maxRationalTime returns the maximum of two RationalTimes.
@@ -258,7 +258,7 @@ func isPositive(t opentime.RationalTime) bool {
 }
 
 // getPreviousItem returns the item before the given index, or nil if none exists.
-func getPreviousItem(comp opentimelineio.Composition, index int) opentimelineio.Item {
+func getPreviousItem(comp gotio.Composition, index int) gotio.Item {
 	if index <= 0 {
 		return nil
 	}
@@ -266,19 +266,19 @@ func getPreviousItem(comp opentimelineio.Composition, index int) opentimelineio.
 	if index > len(children) {
 		return nil
 	}
-	if item, ok := children[index-1].(opentimelineio.Item); ok {
+	if item, ok := children[index-1].(gotio.Item); ok {
 		return item
 	}
 	return nil
 }
 
 // getNextItem returns the item after the given index, or nil if none exists.
-func getNextItem(comp opentimelineio.Composition, index int) opentimelineio.Item {
+func getNextItem(comp gotio.Composition, index int) gotio.Item {
 	children := comp.Children()
 	if index < 0 || index >= len(children)-1 {
 		return nil
 	}
-	if item, ok := children[index+1].(opentimelineio.Item); ok {
+	if item, ok := children[index+1].(gotio.Item); ok {
 		return item
 	}
 	return nil
@@ -286,7 +286,7 @@ func getNextItem(comp opentimelineio.Composition, index int) opentimelineio.Item
 
 // adjustItemDuration adjusts an item's duration by a delta.
 // Returns an error if the result would be negative.
-func adjustItemDuration(item opentimelineio.Item, delta opentime.RationalTime) error {
+func adjustItemDuration(item gotio.Item, delta opentime.RationalTime) error {
 	var sourceRange opentime.TimeRange
 	if sr := item.SourceRange(); sr != nil {
 		sourceRange = *sr
@@ -310,7 +310,7 @@ func adjustItemDuration(item opentimelineio.Item, delta opentime.RationalTime) e
 
 // adjustItemStartTime adjusts an item's source start time by a delta.
 // This changes which part of the source media is shown.
-func adjustItemStartTime(item opentimelineio.Item, delta opentime.RationalTime) error {
+func adjustItemStartTime(item gotio.Item, delta opentime.RationalTime) error {
 	var sourceRange opentime.TimeRange
 	if sr := item.SourceRange(); sr != nil {
 		sourceRange = *sr

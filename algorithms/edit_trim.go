@@ -5,19 +5,19 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // TrimConfig holds configuration for the Trim operation.
 type TrimConfig struct {
-	FillTemplate opentimelineio.Item
+	FillTemplate gotio.Item
 }
 
 // TrimOption is a functional option for Trim.
 type TrimOption func(*TrimConfig)
 
 // WithTrimFillTemplate sets the template item to use for filling gaps.
-func WithTrimFillTemplate(template opentimelineio.Item) TrimOption {
+func WithTrimFillTemplate(template gotio.Item) TrimOption {
 	return func(c *TrimConfig) {
 		c.FillTemplate = template
 	}
@@ -40,8 +40,8 @@ func WithTrimFillTemplate(template opentimelineio.Item) TrimOption {
 //   - deltaOut: Adjustment to source_range end (positive = extend tail)
 //   - opts: Optional configuration
 func Trim(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	deltaIn opentime.RationalTime,
 	deltaOut opentime.RationalTime,
 	opts ...TrimOption,
@@ -91,8 +91,8 @@ func Trim(
 
 // trimHead handles the head (in-point) trim.
 func trimHead(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	itemIndex int,
 	sourceRange opentime.TimeRange,
 	deltaIn opentime.RationalTime,
@@ -157,8 +157,8 @@ func trimHead(
 
 // trimTail handles the tail (out-point) trim.
 func trimTail(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	itemIndex int,
 	sourceRange opentime.TimeRange,
 	deltaOut opentime.RationalTime,
@@ -205,7 +205,7 @@ func trimTail(
 		newNextDuration := nextRange.Duration().Sub(deltaOut)
 
 		// Handle next item becoming a gap
-		if _, isGap := nextItem.(*opentimelineio.Gap); isGap {
+		if _, isGap := nextItem.(*gotio.Gap); isGap {
 			if newNextDuration.Value() <= 0 {
 				// Gap is eliminated - remove it
 				// Note: Recalculate itemIndex since our item might have shifted

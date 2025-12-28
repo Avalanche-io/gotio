@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // SliceConfig holds configuration for the Slice operation.
@@ -36,7 +36,7 @@ func WithSliceRemoveTransitions(remove bool) SliceOption {
 //   - time: The time at which to slice
 //   - opts: Optional configuration
 func Slice(
-	composition opentimelineio.Composition,
+	composition gotio.Composition,
 	time opentime.RationalTime,
 	opts ...SliceOption,
 ) error {

@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // ============================================================================
@@ -18,7 +18,7 @@ func TestTrimHeadClampToAvailable(t *testing.T) {
 	// Test trimHead clamping when newStart < available range start
 	track := createTestTrackWithAvailableRange([]float64{48, 48}, 100, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Set source range starting at frame 20
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(20, 24), opentime.NewRationalTime(48, 24))
@@ -42,7 +42,7 @@ func TestTrimHeadClampToAvailable(t *testing.T) {
 func TestTrimHeadNoPreviousItemExtend(t *testing.T) {
 	// Test creating a gap when no previous item and extending head (deltaIn < 0)
 	track := createTestTrack([]float64{48}, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Extend head (negative deltaIn) with no previous item
 	deltaIn := opentime.NewRationalTime(-12, 24)
@@ -56,22 +56,22 @@ func TestTrimHeadNoPreviousItemExtend(t *testing.T) {
 	if len(children) != 2 {
 		t.Fatalf("expected 2 children (gap + item), got %d", len(children))
 	}
-	if _, isGap := children[0].(*opentimelineio.Gap); !isGap {
+	if _, isGap := children[0].(*gotio.Gap); !isGap {
 		t.Error("first child should be a gap")
 	}
 }
 
 func TestTrimHeadPreviousItemNoSourceRange(t *testing.T) {
 	// Test when previous item has no source range (uses available range)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	// Add a gap (gaps typically don't have source ranges set explicitly)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	// Add a clip
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	// Trim clip's head (should adjust gap)
@@ -86,7 +86,7 @@ func TestTrimHeadClampPreviousDuration(t *testing.T) {
 	// Test clamping previous item duration when it would go negative
 	track := createTestTrack([]float64{12, 48}, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Trim head by more than previous item's duration
 	// First item is 12 frames, we're trimming by -24 (extending by 24)
@@ -106,7 +106,7 @@ func TestTrimHeadClampPreviousDuration(t *testing.T) {
 func TestTrimTailClampToAvailable(t *testing.T) {
 	// Test trimTail clamping when duration exceeds available range
 	track := createTestTrackWithAvailableRange([]float64{24}, 48, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Try to extend tail beyond available range
 	// Available is 48, current is 24, trying to add 50 should clamp
@@ -125,15 +125,15 @@ func TestTrimTailClampToAvailable(t *testing.T) {
 
 func TestTrimTailNextItemNoSourceRange(t *testing.T) {
 	// Test when next item has no source range (uses available range)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	// Add a clip
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	// Add a gap (gaps typically don't have source ranges set explicitly)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	// Trim clip's tail (should adjust gap)
@@ -146,15 +146,15 @@ func TestTrimTailNextItemNoSourceRange(t *testing.T) {
 
 func TestTrimTailEliminateGap(t *testing.T) {
 	// Test eliminating a gap when trim would make it negative
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	// Add a clip
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	// Add a small gap
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(12, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(12, 24))
 	track.AppendChild(gap)
 
 	// Extend clip's tail by more than gap's duration
@@ -174,7 +174,7 @@ func TestTrimTailEliminateGap(t *testing.T) {
 func TestTrimTailNoNextItemContract(t *testing.T) {
 	// Test creating a gap when no next item and contracting tail (deltaOut < 0)
 	track := createTestTrack([]float64{48}, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Contract tail (negative deltaOut) with no next item
 	deltaOut := opentime.NewRationalTime(-12, 24)
@@ -188,14 +188,14 @@ func TestTrimTailNoNextItemContract(t *testing.T) {
 	if len(children) != 2 {
 		t.Fatalf("expected 2 children (item + gap), got %d", len(children))
 	}
-	if _, isGap := children[1].(*opentimelineio.Gap); !isGap {
+	if _, isGap := children[1].(*gotio.Gap); !isGap {
 		t.Error("second child should be a gap")
 	}
 }
 
 func TestTrimNegativeDuration(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Try to trim more than duration
 	deltaIn := opentime.NewRationalTime(48, 24)
@@ -212,7 +212,7 @@ func TestTrimNegativeDuration(t *testing.T) {
 func TestRollInNoPreviousPositive(t *testing.T) {
 	// Test rolling in-point with no previous item (positive delta trims head)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Roll in with no previous item - should trim head
 	deltaIn := opentime.NewRationalTime(12, 24)
@@ -230,7 +230,7 @@ func TestRollInNoPreviousPositive(t *testing.T) {
 func TestRollInNoPreviousNegative(t *testing.T) {
 	// Test rolling in-point with no previous item (negative delta - no-op)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	originalSr := *item.SourceRange()
 
@@ -252,7 +252,7 @@ func TestRollInClampLeft(t *testing.T) {
 	// Test clamping when rolling left past available range
 	track := createTestTrackWithAvailableRange([]float64{48, 48}, 100, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Set source range starting at frame 10
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(10, 24), opentime.NewRationalTime(48, 24))
@@ -276,7 +276,7 @@ func TestRollInClampToPreviousDuration(t *testing.T) {
 	// Test clamping when rolling right more than previous item allows
 	track := createTestTrack([]float64{12, 48}, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Roll right by more than previous item's duration (12)
 	deltaIn := opentime.NewRationalTime(24, 24)
@@ -294,13 +294,13 @@ func TestRollInClampToPreviousDuration(t *testing.T) {
 
 func TestRollInPreviousNoSourceRange(t *testing.T) {
 	// Test when previous item has no source range
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	deltaIn := opentime.NewRationalTime(12, 24)
@@ -313,7 +313,7 @@ func TestRollInPreviousNoSourceRange(t *testing.T) {
 func TestRollOutNoNextPositive(t *testing.T) {
 	// Test rolling out-point with no next item (positive delta extends tail)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Roll out with no next item - should extend tail
 	deltaOut := opentime.NewRationalTime(12, 24)
@@ -331,7 +331,7 @@ func TestRollOutNoNextPositive(t *testing.T) {
 func TestRollOutNoNextNegative(t *testing.T) {
 	// Test rolling out-point with no next item (negative delta - no-op)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	originalDur, _ := item.Duration()
 
@@ -352,7 +352,7 @@ func TestRollOutNoNextNegative(t *testing.T) {
 func TestRollOutNoNextClampToAvailable(t *testing.T) {
 	// Test clamping when extending past available range
 	track := createTestTrackWithAvailableRange([]float64{24}, 48, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Try to extend beyond available (48)
 	deltaOut := opentime.NewRationalTime(50, 24)
@@ -371,7 +371,7 @@ func TestRollOutClampToNextDuration(t *testing.T) {
 	// Test clamping when rolling right more than next item allows
 	track := createTestTrack([]float64{48, 12}, 24)
 	children := track.Children()
-	firstItem := children[0].(opentimelineio.Item)
+	firstItem := children[0].(gotio.Item)
 
 	// Roll right by more than next item's duration (12)
 	deltaOut := opentime.NewRationalTime(24, 24)
@@ -391,7 +391,7 @@ func TestRollOutClampLeft(t *testing.T) {
 	// Test clamping when rolling left would make our duration negative
 	track := createTestTrack([]float64{24, 48}, 24)
 	children := track.Children()
-	firstItem := children[0].(opentimelineio.Item)
+	firstItem := children[0].(gotio.Item)
 
 	// Roll left by more than our duration
 	deltaOut := opentime.NewRationalTime(-48, 24)
@@ -409,13 +409,13 @@ func TestRollOutClampLeft(t *testing.T) {
 
 func TestRollOutNextNoSourceRange(t *testing.T) {
 	// Test when next item has no source range
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	deltaOut := opentime.NewRationalTime(12, 24)
@@ -432,7 +432,7 @@ func TestRollOutNextNoSourceRange(t *testing.T) {
 func TestSlideFirstItem(t *testing.T) {
 	// First item cannot be slid - should return nil (no-op)
 	track := createTestTrack([]float64{24}, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	err := Slide(item, track, opentime.NewRationalTime(12, 24))
 	if err != nil {
@@ -442,13 +442,13 @@ func TestSlideFirstItem(t *testing.T) {
 
 func TestSlidePreviousNoSourceRange(t *testing.T) {
 	// Test when previous item has no source range
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	err := Slide(clip, track, opentime.NewRationalTime(12, 24))
@@ -461,7 +461,7 @@ func TestSlideClampNegative(t *testing.T) {
 	// Test clamping when sliding left more than previous item's duration
 	track := createTestTrack([]float64{12, 48}, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Slide left by more than previous item's duration (12)
 	err := Slide(secondItem, track, opentime.NewRationalTime(-24, 24))
@@ -480,7 +480,7 @@ func TestSlideClampToAvailable(t *testing.T) {
 	// Test clamping when sliding right past available range
 	track := createTestTrackWithAvailableRange([]float64{24, 48}, 36, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	// Slide right by more than available allows
 	err := Slide(secondItem, track, opentime.NewRationalTime(24, 24))
@@ -499,7 +499,7 @@ func TestSlideZeroDelta(t *testing.T) {
 	// Zero delta should be no-op
 	track := createTestTrack([]float64{24, 24}, 24)
 	children := track.Children()
-	secondItem := children[1].(opentimelineio.Item)
+	secondItem := children[1].(gotio.Item)
 
 	originalDur, _ := children[0].Duration()
 
@@ -520,12 +520,12 @@ func TestSlideZeroDelta(t *testing.T) {
 
 func TestFillSourceClipLongerThanGap(t *testing.T) {
 	// Source mode keeps clip at original duration, may overflow gap
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(24, 24))
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(24, 24))
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Fill(clip, track, opentime.NewRationalTime(0, 24), ReferencePointSource)
 	if err != nil {
@@ -535,12 +535,12 @@ func TestFillSourceClipLongerThanGap(t *testing.T) {
 
 func TestFillSequenceClipShorterThanGap(t *testing.T) {
 	// Sequence mode with clip shorter than gap - uses clip duration
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(72, 24))
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(72, 24))
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Fill(clip, track, opentime.NewRationalTime(0, 24), ReferencePointSequence)
 	if err != nil {
@@ -563,7 +563,7 @@ func TestInsertPastEnd(t *testing.T) {
 	// Insert past end should work (may create gap)
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Insert(clip, track, opentime.NewRationalTime(48, 24))
 	if err != nil {
@@ -579,7 +579,7 @@ func TestOverwriteInsertBeforeStart(t *testing.T) {
 	// Test overwrite that starts before composition start
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite starting before 0
 	timeRange := opentime.NewTimeRange(
@@ -623,7 +623,7 @@ func TestRemoveRangeSpanningMultiple(t *testing.T) {
 func TestRippleNegativeIn(t *testing.T) {
 	// Test ripple with negative deltaIn (extend head)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Set source range starting at frame 20
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(20, 24), opentime.NewRationalTime(48, 24))
@@ -644,7 +644,7 @@ func TestRippleNegativeIn(t *testing.T) {
 func TestRippleNegativeOut(t *testing.T) {
 	// Test ripple with negative deltaOut (contract tail)
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	deltaOut := opentime.NewRationalTime(-12, 24)
 	err := Ripple(item, opentime.RationalTime{}, deltaOut)
@@ -685,7 +685,7 @@ func TestSliceNearBoundary(t *testing.T) {
 func TestTrimItemNotInComposition(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	orphanClip := opentimelineio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
+	orphanClip := gotio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Trim(orphanClip, track, opentime.NewRationalTime(12, 24), opentime.RationalTime{})
 	if err == nil {
@@ -696,7 +696,7 @@ func TestTrimItemNotInComposition(t *testing.T) {
 func TestRollItemNotInComposition(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	orphanClip := opentimelineio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
+	orphanClip := gotio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Roll(orphanClip, track, opentime.NewRationalTime(12, 24), opentime.RationalTime{})
 	if err == nil {
@@ -707,7 +707,7 @@ func TestRollItemNotInComposition(t *testing.T) {
 func TestSlideItemNotInComposition(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	orphanClip := opentimelineio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
+	orphanClip := gotio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Slide(orphanClip, track, opentime.NewRationalTime(12, 24))
 	if err == nil {
@@ -723,7 +723,7 @@ func TestFillNotInGap(t *testing.T) {
 	// Fill at a time that's not in a gap should fail
 	track := createTestTrack([]float64{48}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Fill(clip, track, opentime.NewRationalTime(12, 24), ReferencePointSource)
 	if err == nil {
@@ -733,12 +733,12 @@ func TestFillNotInGap(t *testing.T) {
 
 func TestFillFitMode(t *testing.T) {
 	// Fit mode adds time warp effect
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Fill(clip, track, opentime.NewRationalTime(0, 24), ReferencePointFit)
 	if err != nil {
@@ -747,7 +747,7 @@ func TestFillFitMode(t *testing.T) {
 
 	// Should have time warp effect
 	children := track.Children()
-	item := children[0].(opentimelineio.Item)
+	item := children[0].(gotio.Item)
 	effects := item.Effects()
 	if len(effects) == 0 {
 		t.Error("expected time warp effect")
@@ -758,7 +758,7 @@ func TestFillOutsideTrack(t *testing.T) {
 	// Fill at time outside track should fail
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Fill(clip, track, opentime.NewRationalTime(100, 24), ReferencePointSource)
 	if err == nil {
@@ -772,8 +772,8 @@ func TestFillOutsideTrack(t *testing.T) {
 
 func TestSliceInGap(t *testing.T) {
 	// Slice inside a gap
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	err := Slice(track, opentime.NewRationalTime(24, 24))
@@ -789,7 +789,7 @@ func TestSliceInGap(t *testing.T) {
 }
 
 func TestSliceEmptyTrack(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	// Slice on empty track is a no-op (no items to slice)
 	err := Slice(track, opentime.NewRationalTime(0, 24))
@@ -806,7 +806,7 @@ func TestOverwriteExactMatch(t *testing.T) {
 	// Overwrite that exactly matches an existing item
 	track := createTestTrack([]float64{24, 24, 24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite middle clip exactly
 	timeRange := opentime.NewTimeRange(
@@ -823,7 +823,7 @@ func TestOverwritePartialOverlap(t *testing.T) {
 	// Overwrite that partially overlaps items
 	track := createTestTrack([]float64{24, 24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite straddling boundary
 	timeRange := opentime.NewTimeRange(
@@ -842,7 +842,7 @@ func TestOverwritePartialOverlap(t *testing.T) {
 
 func TestRippleNoSourceRange(t *testing.T) {
 	// Item with no source range should use available range
-	clip := opentimelineio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
 
 	err := Ripple(clip, opentime.NewRationalTime(6, 24), opentime.RationalTime{})
 	// This may fail due to no available range, but should not panic
@@ -852,7 +852,7 @@ func TestRippleNoSourceRange(t *testing.T) {
 func TestRippleClampIn(t *testing.T) {
 	// Test clamping when deltaIn would go past available range start
 	track := createTestTrackWithAvailableRange([]float64{48}, 100, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Try to ripple in by more than start allows
 	deltaIn := opentime.NewRationalTime(-100, 24)
@@ -871,7 +871,7 @@ func TestRippleClampIn(t *testing.T) {
 func TestRippleClampOut(t *testing.T) {
 	// Test clamping when deltaOut would exceed available range
 	track := createTestTrackWithAvailableRange([]float64{24}, 48, 24)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Try to extend beyond available (48)
 	deltaOut := opentime.NewRationalTime(100, 24)
@@ -894,7 +894,7 @@ func TestRollZeroDeltas(t *testing.T) {
 	// Zero deltas should be no-op
 	track := createTestTrack([]float64{24, 24}, 24)
 	children := track.Children()
-	item := children[0].(opentimelineio.Item)
+	item := children[0].(gotio.Item)
 
 	originalDur, _ := item.Duration()
 
@@ -911,12 +911,12 @@ func TestRollZeroDeltas(t *testing.T) {
 
 func TestRollItemNoSourceRange(t *testing.T) {
 	// Test when main item has no source range
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
-	gap1 := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap1 := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap1)
 
-	gap2 := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	gap2 := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap2)
 
 	err := Roll(gap2, track, opentime.NewRationalTime(12, 24), opentime.RationalTime{})
@@ -932,7 +932,7 @@ func TestRollItemNoSourceRange(t *testing.T) {
 func TestInsertZeroTime(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Insert(clip, track, opentime.NewRationalTime(0, 24))
 	if err != nil {
@@ -948,7 +948,7 @@ func TestInsertZeroTime(t *testing.T) {
 func TestInsertAtBoundary(t *testing.T) {
 	track := createTestTrack([]float64{24, 24}, 24)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("new", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert at boundary between clips
 	err := Insert(clip, track, opentime.NewRationalTime(24, 24))
@@ -968,9 +968,9 @@ func TestInsertAtBoundary(t *testing.T) {
 
 func TestAdjustItemDurationExtend(t *testing.T) {
 	ar := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(100, 24))
-	ref := opentimelineio.NewExternalReference("", "file://test.mov", &ar, nil)
+	ref := gotio.NewExternalReference("", "file://test.mov", &ar, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("test", ref, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", ref, &sr, nil, nil, nil, "", nil)
 
 	err := adjustItemDuration(clip, opentime.NewRationalTime(12, 24))
 	if err != nil {
@@ -985,7 +985,7 @@ func TestAdjustItemDurationExtend(t *testing.T) {
 
 func TestAdjustItemDurationContract(t *testing.T) {
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 
 	err := adjustItemDuration(clip, opentime.NewRationalTime(-12, 24))
 	if err != nil {
@@ -1000,7 +1000,7 @@ func TestAdjustItemDurationContract(t *testing.T) {
 
 func TestAdjustItemDurationNegativeResult(t *testing.T) {
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 
 	err := adjustItemDuration(clip, opentime.NewRationalTime(-48, 24))
 	if err != ErrNegativeDuration {
@@ -1010,7 +1010,7 @@ func TestAdjustItemDurationNegativeResult(t *testing.T) {
 
 func TestAdjustItemStartTimeNegativeResult(t *testing.T) {
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, &sr, nil, nil, nil, "", nil)
 
 	// Delta of 48 would make duration negative (24 - 48 = -24)
 	err := adjustItemStartTime(clip, opentime.NewRationalTime(48, 24))
@@ -1036,7 +1036,7 @@ func TestGetNextItemLast(t *testing.T) {
 }
 
 func TestCompositionEndTimeEmpty(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 	// Empty track has zero duration (not an error)
 	endTime, err := compositionEndTime(track)
 	if err != nil {
@@ -1048,7 +1048,7 @@ func TestCompositionEndTimeEmpty(t *testing.T) {
 }
 
 func TestItemsInRangeEmpty(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 	timeRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
 
 	items, _, _, err := itemsInRange(track, timeRange)
@@ -1061,8 +1061,8 @@ func TestItemsInRangeEmpty(t *testing.T) {
 }
 
 func TestSplitGap(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGapWithDuration(opentime.NewRationalTime(48, 24))
 	track.AppendChild(gap)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
@@ -1078,8 +1078,8 @@ func TestSplitGap(t *testing.T) {
 	}
 
 	// Both should be gaps
-	_, leftIsGap := left.(*opentimelineio.Gap)
-	_, rightIsGap := right.(*opentimelineio.Gap)
+	_, leftIsGap := left.(*gotio.Gap)
+	_, rightIsGap := right.(*gotio.Gap)
 	if !leftIsGap || !rightIsGap {
 		t.Error("split of gap should produce two gaps")
 	}
@@ -1091,20 +1091,20 @@ func TestSplitGap(t *testing.T) {
 
 func TestRemoveTransitionsInRange(t *testing.T) {
 	// Create track with clips and a transition
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	// Add a transition
 	inOffset := opentime.NewRationalTime(6, 24)
 	outOffset := opentime.NewRationalTime(6, 24)
-	trans := opentimelineio.NewTransition("trans", "SMPTE_Dissolve", inOffset, outOffset, nil)
+	trans := gotio.NewTransition("trans", "SMPTE_Dissolve", inOffset, outOffset, nil)
 	track.AppendChild(trans)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track.AppendChild(clip2)
 
 	// Remove transitions in range that includes the transition
@@ -1124,7 +1124,7 @@ func TestRemoveTransitionsInRange(t *testing.T) {
 	children := track.Children()
 	hasTransition := false
 	for _, child := range children {
-		if _, isTransition := child.(*opentimelineio.Transition); isTransition {
+		if _, isTransition := child.(*gotio.Transition); isTransition {
 			hasTransition = true
 		}
 	}
@@ -1156,20 +1156,20 @@ func TestRemoveTransitionsNoTransitions(t *testing.T) {
 
 func TestSliceWithTransitionRemove(t *testing.T) {
 	// Create track with transition at slice point
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	// Add a transition at frame 24 (between clips)
 	inOffset := opentime.NewRationalTime(6, 24)
 	outOffset := opentime.NewRationalTime(6, 24)
-	trans := opentimelineio.NewTransition("trans", "SMPTE_Dissolve", inOffset, outOffset, nil)
+	trans := gotio.NewTransition("trans", "SMPTE_Dissolve", inOffset, outOffset, nil)
 	track.AppendChild(trans)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track.AppendChild(clip2)
 
 	// Slice at transition boundary with RemoveTransitions=true (default)
@@ -1222,7 +1222,7 @@ func TestOverwriteBeforeStartCoverage(t *testing.T) {
 
 	// Create clip to insert before composition start (negative time range)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	newClip := opentimelineio.NewClip("before", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("before", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite at negative time range ending at 0
 	timeRange := opentime.NewTimeRange(
@@ -1241,7 +1241,7 @@ func TestOverwriteBeforeStartWithGap(t *testing.T) {
 
 	// Create clip to insert well before composition
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(6, 24))
-	newClip := opentimelineio.NewClip("far_before", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("far_before", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite at negative time range with gap to composition
 	timeRange := opentime.NewTimeRange(
@@ -1262,7 +1262,7 @@ func TestRollInClampPositive(t *testing.T) {
 	// Test roll - small delta that stays within bounds
 	track := createTestTrack([]float64{48, 48}, 24)
 	children := track.Children()
-	clip2 := children[1].(opentimelineio.Item)
+	clip2 := children[1].(gotio.Item)
 
 	// Roll in-point forward by 6 frames (within bounds)
 	err := Roll(clip2, track, opentime.NewRationalTime(6, 24), opentime.NewRationalTime(0, 24))
@@ -1275,7 +1275,7 @@ func TestRollOutClampNegative(t *testing.T) {
 	// Test roll out point
 	track := createTestTrack([]float64{48, 48}, 24)
 	children := track.Children()
-	clip1 := children[0].(opentimelineio.Item)
+	clip1 := children[0].(gotio.Item)
 
 	// Roll out-point back by 6 frames (within bounds)
 	err := Roll(clip1, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(-6, 24))
@@ -1290,23 +1290,23 @@ func TestRollOutClampNegative(t *testing.T) {
 
 func TestFillEntireGap(t *testing.T) {
 	// Fill that exactly matches gap duration
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track.AppendChild(clip2)
 
 	// Fill clip that exactly matches gap
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(36, 24), ReferencePointSequence)
 	if err != nil {
@@ -1316,19 +1316,19 @@ func TestFillEntireGap(t *testing.T) {
 
 func TestFillSourceMode(t *testing.T) {
 	// Test Fill with ReferencePointSource mode
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Fill clip with source mode
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(36, 24), ReferencePointSource)
 	if err != nil {
@@ -1344,7 +1344,7 @@ func TestTrimAtBoundary(t *testing.T) {
 	// Trim at item boundary (should be no-op)
 	track := createTestTrack([]float64{24, 24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Trim with zero deltas (no-op)
 	err := Trim(clip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(0, 24))
@@ -1357,7 +1357,7 @@ func TestTrimTailSmall(t *testing.T) {
 	// Trim tail by a small amount within bounds
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Trim tail by 6 frames (within bounds)
 	err := Trim(clip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(-6, 24))
@@ -1372,15 +1372,15 @@ func TestTrimTailSmall(t *testing.T) {
 
 func TestInsertAtGapMiddle(t *testing.T) {
 	// Insert into middle of a gap
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Insert clip into middle of gap
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Insert(clip, track, opentime.NewRationalTime(24, 24))
 	if err != nil {
@@ -1393,7 +1393,7 @@ func TestInsertBeyondEnd(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("append", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("append", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Insert(clip, track, opentime.NewRationalTime(48, 24))
 	if err != nil {
@@ -1409,7 +1409,7 @@ func TestClampToAvailableRangeExtend(t *testing.T) {
 	// Test clamping when extending duration
 	track := createTestTrack([]float64{24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Clamp a large range beyond available
 	largeRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(100, 24))
@@ -1422,7 +1422,7 @@ func TestAdjustItemDurationShrink(t *testing.T) {
 	// Test shrinking duration
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	err := adjustItemDuration(clip, opentime.NewRationalTime(-24, 24))
 	if err != nil {
@@ -1434,7 +1434,7 @@ func TestAdjustItemStartTimePositive(t *testing.T) {
 	// Test adjusting start time positively
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	err := adjustItemStartTime(clip, opentime.NewRationalTime(12, 24))
 	if err != nil {
@@ -1446,7 +1446,7 @@ func TestSplitItemAtTimeAtStart(t *testing.T) {
 	// Split at item start (should return nil, item)
 	track := createTestTrack([]float64{24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 	itemRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
 
 	left, right, err := splitItemAtTime(track, clip, 0, itemRange, opentime.NewRationalTime(0, 24))
@@ -1465,7 +1465,7 @@ func TestSplitItemAtTimeAtEnd(t *testing.T) {
 	// Split at item end (should return item, nil)
 	track := createTestTrack([]float64{24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 	itemRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
 
 	left, right, err := splitItemAtTime(track, clip, 0, itemRange, opentime.NewRationalTime(24, 24))
@@ -1482,14 +1482,14 @@ func TestSplitItemAtTimeAtEnd(t *testing.T) {
 
 func TestCompositionDurationWithGaps(t *testing.T) {
 	// Track with gaps
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	duration, err := compositionDuration(track)
@@ -1583,7 +1583,7 @@ func TestRollZeroDelta(t *testing.T) {
 	// Test Roll with zero deltas (no-op path)
 	track := createTestTrack([]float64{24, 24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	err := Roll(clip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(0, 24))
 	if err != nil {
@@ -1596,7 +1596,7 @@ func TestRollItemNotInCompositionCoverage(t *testing.T) {
 
 	// Create a clip that's not in the track
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	orphanClip := opentimelineio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
+	orphanClip := gotio.NewClip("orphan", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Roll(orphanClip, track, opentime.NewRationalTime(6, 24), opentime.NewRationalTime(0, 24))
 	if err == nil {
@@ -1608,7 +1608,7 @@ func TestRollFirstItemNoPrevious(t *testing.T) {
 	// Roll first item's in-point (no previous item)
 	track := createTestTrack([]float64{48, 24}, 24)
 	children := track.Children()
-	firstClip := children[0].(opentimelineio.Item)
+	firstClip := children[0].(gotio.Item)
 
 	// Positive deltaIn on first item - should trim head
 	err := Roll(firstClip, track, opentime.NewRationalTime(6, 24), opentime.NewRationalTime(0, 24))
@@ -1621,7 +1621,7 @@ func TestRollLastItemNoNext(t *testing.T) {
 	// Roll last item's out-point (no next item)
 	track := createTestTrack([]float64{24, 48}, 24)
 	children := track.Children()
-	lastClip := children[1].(opentimelineio.Item)
+	lastClip := children[1].(gotio.Item)
 
 	// Negative deltaOut on last item - should trim tail
 	err := Roll(lastClip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(-6, 24))
@@ -1632,19 +1632,19 @@ func TestRollLastItemNoNext(t *testing.T) {
 
 func TestFillSequenceGapExactly(t *testing.T) {
 	// Fill with ReferencePointSequence where clip exactly matches gap
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Fill clip with exactly matching duration
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(30, 24), ReferencePointSequence)
 	if err != nil {
@@ -1654,19 +1654,19 @@ func TestFillSequenceGapExactly(t *testing.T) {
 
 func TestFillFitModeCoverage(t *testing.T) {
 	// Fill with ReferencePointFit mode
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Fill clip with fit mode - should add time warp effect
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(36, 24), ReferencePointFit)
 	if err != nil {
@@ -1679,7 +1679,7 @@ func TestInsertNegativeTime(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert at negative time
 	err := Insert(clip, track, opentime.NewRationalTime(-6, 24))
@@ -1709,7 +1709,7 @@ func TestTrimBothDeltas(t *testing.T) {
 	// Trim with both head and tail deltas
 	track := createTestTrack([]float64{96}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Trim both ends
 	err := Trim(clip, track, opentime.NewRationalTime(12, 24), opentime.NewRationalTime(-12, 24))
@@ -1720,7 +1720,7 @@ func TestTrimBothDeltas(t *testing.T) {
 
 func TestAdjustItemDurationNoSourceRange(t *testing.T) {
 	// Test adjustItemDuration with item that has no source range
-	clip := opentimelineio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
 
 	// This will use available range fallback
 	err := adjustItemDuration(clip, opentime.NewRationalTime(6, 24))
@@ -1730,7 +1730,7 @@ func TestAdjustItemDurationNoSourceRange(t *testing.T) {
 
 func TestAdjustItemStartTimeNoSourceRange(t *testing.T) {
 	// Test adjustItemStartTime with item that has no source range
-	clip := opentimelineio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("test", nil, nil, nil, nil, nil, "", nil)
 
 	// This will use available range fallback
 	err := adjustItemStartTime(clip, opentime.NewRationalTime(6, 24))
@@ -1775,7 +1775,7 @@ func TestOverwriteMiddleSpanningMultiple(t *testing.T) {
 	track := createTestTrack([]float64{24, 24, 24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	newClip := opentimelineio.NewClip("span", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("span", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite from middle of first to middle of third
 	timeRange := opentime.NewTimeRange(
@@ -1792,7 +1792,7 @@ func TestSlideClampBothDirections(t *testing.T) {
 	// Test Slide clamping
 	track := createTestTrack([]float64{24, 48, 24}, 24)
 	children := track.Children()
-	middleClip := children[1].(opentimelineio.Item)
+	middleClip := children[1].(gotio.Item)
 
 	// Slide the middle clip by a small amount
 	err := Slide(middleClip, track, opentime.NewRationalTime(6, 24))
@@ -1805,7 +1805,7 @@ func TestSlipPositive(t *testing.T) {
 	// Test Slip with positive delta
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Set a smaller source range so we have room to slip
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(12, 24), opentime.NewRationalTime(24, 24))
@@ -1821,7 +1821,7 @@ func TestRippleExtend(t *testing.T) {
 	// Test Ripple extending duration
 	track := createTestTrack([]float64{48, 24}, 24)
 	children := track.Children()
-	firstClip := children[0].(opentimelineio.Item)
+	firstClip := children[0].(gotio.Item)
 
 	// Ripple extend the out-point
 	err := Ripple(firstClip, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
@@ -1839,7 +1839,7 @@ func TestFillNotGap(t *testing.T) {
 	track := createTestTrack([]float64{24, 24}, 24)
 
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	// Fill at time 12 (in the middle of first clip, not a gap)
 	err := Fill(fillClip, track, opentime.NewRationalTime(12, 24), ReferencePointSequence)
@@ -1850,10 +1850,10 @@ func TestFillNotGap(t *testing.T) {
 
 func TestFillNoItemAtTime(t *testing.T) {
 	// Empty track - no item at time
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(0, 24), ReferencePointSequence)
 	if err == nil {
@@ -1863,14 +1863,14 @@ func TestFillNoItemAtTime(t *testing.T) {
 
 func TestFillClipNoSourceRange(t *testing.T) {
 	// Fill with a clip that has no source range
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Clip with no source range
-	fillClip := opentimelineio.NewClip("fill", nil, nil, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, nil, nil, nil, nil, "", nil)
 
 	// This will use available range fallback
 	err := Fill(fillClip, track, opentime.NewRationalTime(12, 24), ReferencePointSequence)
@@ -1880,10 +1880,10 @@ func TestFillClipNoSourceRange(t *testing.T) {
 
 func TestInsertEmptyCompositionWithTime(t *testing.T) {
 	// Insert into empty composition at time > 0 (creates gap first)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert at time 24 (should create a gap first)
 	err := Insert(clip, track, opentime.NewRationalTime(24, 24))
@@ -1902,7 +1902,7 @@ func TestInsertPrepend(t *testing.T) {
 	track := createTestTrack([]float64{24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("prepend", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("prepend", nil, &sr, nil, nil, nil, "", nil)
 
 	err := Insert(clip, track, opentime.NewRationalTime(0, 24))
 	if err != nil {
@@ -1920,7 +1920,7 @@ func TestInsertWithRemoveTransitionsOption(t *testing.T) {
 	track := createTestTrack([]float64{24, 24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert with RemoveTransitions=false
 	err := Insert(clip, track, opentime.NewRationalTime(12, 24), WithInsertRemoveTransitions(false))
@@ -1931,14 +1931,14 @@ func TestInsertWithRemoveTransitionsOption(t *testing.T) {
 
 func TestHandleOverwriteMiddleNoItems(t *testing.T) {
 	// Create a track with a single gap and overwrite in the middle
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite in middle of gap
 	timeRange := opentime.NewTimeRange(
@@ -1986,10 +1986,10 @@ func TestGetNextItemMiddle(t *testing.T) {
 
 func TestOverwriteEmptyCompositionWithGapCoverage(t *testing.T) {
 	// Overwrite empty composition at time > 0 (creates fill gap)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite starting at time 24 (after empty composition)
 	timeRange := opentime.NewTimeRange(
@@ -2016,7 +2016,7 @@ func TestSlideFirstItemCoverage(t *testing.T) {
 	// Slide first item (no previous to borrow from)
 	track := createTestTrack([]float64{48, 24}, 24)
 	children := track.Children()
-	firstClip := children[0].(opentimelineio.Item)
+	firstClip := children[0].(gotio.Item)
 
 	// Try to slide first item right (should clamp or fail gracefully)
 	err := Slide(firstClip, track, opentime.NewRationalTime(6, 24))
@@ -2028,7 +2028,7 @@ func TestSlideLastItem(t *testing.T) {
 	// Slide last item
 	track := createTestTrack([]float64{24, 48}, 24)
 	children := track.Children()
-	lastClip := children[1].(opentimelineio.Item)
+	lastClip := children[1].(gotio.Item)
 
 	// Slide last item left
 	err := Slide(lastClip, track, opentime.NewRationalTime(-6, 24))
@@ -2041,7 +2041,7 @@ func TestSlipNegative(t *testing.T) {
 	// Slip with negative delta
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	// Set a source range with room to slip
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(12, 24), opentime.NewRationalTime(24, 24))
@@ -2057,7 +2057,7 @@ func TestRippleZeroDelta(t *testing.T) {
 	// Ripple with zero deltas (no-op)
 	track := createTestTrack([]float64{24}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	err := Ripple(clip, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(0, 24))
 	if err != nil {
@@ -2069,7 +2069,7 @@ func TestRippleInPoint(t *testing.T) {
 	// Ripple in-point
 	track := createTestTrack([]float64{48}, 24)
 	children := track.Children()
-	clip := children[0].(opentimelineio.Item)
+	clip := children[0].(gotio.Item)
 
 	err := Ripple(clip, opentime.NewRationalTime(6, 24), opentime.NewRationalTime(0, 24))
 	if err != nil {
@@ -2085,7 +2085,7 @@ func TestRollWithPreviousItem(t *testing.T) {
 	// Roll in-point where there is a previous item
 	track := createTestTrack([]float64{48, 48}, 24)
 	children := track.Children()
-	secondClip := children[1].(opentimelineio.Item)
+	secondClip := children[1].(gotio.Item)
 
 	// Roll in-point backward (negative delta) - shifts edit point left
 	err := Roll(secondClip, track, opentime.NewRationalTime(-6, 24), opentime.NewRationalTime(0, 24))
@@ -2098,7 +2098,7 @@ func TestRollInPointClampToPrevDuration(t *testing.T) {
 	// Roll in-point forward more than previous item's duration
 	track := createTestTrack([]float64{12, 48}, 24)
 	children := track.Children()
-	secondClip := children[1].(opentimelineio.Item)
+	secondClip := children[1].(gotio.Item)
 
 	// Try to roll in-point forward by 24 frames (more than prev's 12 frames)
 	err := Roll(secondClip, track, opentime.NewRationalTime(24, 24), opentime.NewRationalTime(0, 24))
@@ -2111,7 +2111,7 @@ func TestRollOutWithNextItem(t *testing.T) {
 	// Roll out-point where there is a next item
 	track := createTestTrack([]float64{48, 48}, 24)
 	children := track.Children()
-	firstClip := children[0].(opentimelineio.Item)
+	firstClip := children[0].(gotio.Item)
 
 	// Roll out-point forward (positive delta) - shifts edit point right
 	err := Roll(firstClip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(6, 24))
@@ -2124,7 +2124,7 @@ func TestRollOutClampToNextDurationCoverage(t *testing.T) {
 	// Roll out-point forward more than next item's duration allows
 	track := createTestTrack([]float64{48, 12}, 24)
 	children := track.Children()
-	firstClip := children[0].(opentimelineio.Item)
+	firstClip := children[0].(gotio.Item)
 
 	// Try to roll out-point forward by 24 frames (more than next's 12 frames)
 	err := Roll(firstClip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
@@ -2137,7 +2137,7 @@ func TestRollBothDeltas(t *testing.T) {
 	// Roll with both in and out deltas
 	track := createTestTrack([]float64{48, 48, 48}, 24)
 	children := track.Children()
-	middleClip := children[1].(opentimelineio.Item)
+	middleClip := children[1].(gotio.Item)
 
 	// Roll both edit points
 	err := Roll(middleClip, track, opentime.NewRationalTime(6, 24), opentime.NewRationalTime(-6, 24))
@@ -2150,7 +2150,7 @@ func TestRollOutPointExtendLastItem(t *testing.T) {
 	// Roll last item's out-point (extend into available range)
 	track := createTestTrack([]float64{24, 24}, 24)
 	children := track.Children()
-	lastClip := children[1].(opentimelineio.Item)
+	lastClip := children[1].(gotio.Item)
 
 	// Try to extend the tail
 	err := Roll(lastClip, track, opentime.NewRationalTime(0, 24), opentime.NewRationalTime(6, 24))
@@ -2167,7 +2167,7 @@ func TestOverwriteMultipleItemsPartial(t *testing.T) {
 	track := createTestTrack([]float64{24, 24, 24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(36, 24))
-	clip := opentimelineio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
 
 	// Overwrite from frame 6 to frame 42 (partial of first and second)
 	timeRange := opentime.NewTimeRange(
@@ -2186,14 +2186,14 @@ func TestOverwriteMultipleItemsPartial(t *testing.T) {
 
 func TestInsertIntoGap(t *testing.T) {
 	// Insert into a gap (should split the gap)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert at frame 24 (middle of gap)
 	err := Insert(clip, track, opentime.NewRationalTime(24, 24))
@@ -2207,7 +2207,7 @@ func TestInsertAtExactBoundary(t *testing.T) {
 	track := createTestTrack([]float64{24, 24}, 24)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 
 	// Insert at frame 24 (boundary between clips)
 	err := Insert(clip, track, opentime.NewRationalTime(24, 24))
@@ -2222,15 +2222,15 @@ func TestInsertAtExactBoundary(t *testing.T) {
 
 func TestFillSequenceClipLongerThanGap(t *testing.T) {
 	// Fill with clip longer than gap (should trim)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Clip with longer duration than gap
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(12, 24), ReferencePointSequence)
 	if err != nil {
@@ -2240,15 +2240,15 @@ func TestFillSequenceClipLongerThanGap(t *testing.T) {
 
 func TestFillFitClipShorterThanGap(t *testing.T) {
 	// Fill with clip shorter than gap using fit mode (should time warp)
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	track.AppendChild(gap)
 
 	// Clip shorter than gap
 	fillSR := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(12, 24))
-	fillClip := opentimelineio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
+	fillClip := gotio.NewClip("fill", nil, &fillSR, nil, nil, nil, "", nil)
 
 	err := Fill(fillClip, track, opentime.NewRationalTime(24, 24), ReferencePointFit)
 	if err != nil {

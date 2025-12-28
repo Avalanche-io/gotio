@@ -5,13 +5,13 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // RemoveConfig holds configuration for the Remove operation.
 type RemoveConfig struct {
 	Fill         bool
-	FillTemplate opentimelineio.Item
+	FillTemplate gotio.Item
 }
 
 // RemoveOption is a functional option for Remove.
@@ -25,7 +25,7 @@ func WithFill(fill bool) RemoveOption {
 }
 
 // WithRemoveFillTemplate sets the template item to use for filling.
-func WithRemoveFillTemplate(template opentimelineio.Item) RemoveOption {
+func WithRemoveFillTemplate(template gotio.Item) RemoveOption {
 	return func(c *RemoveConfig) {
 		c.FillTemplate = template
 	}
@@ -43,7 +43,7 @@ func WithRemoveFillTemplate(template opentimelineio.Item) RemoveOption {
 //   - time: Time where the item to remove exists
 //   - opts: Optional configuration (fill, template)
 func Remove(
-	composition opentimelineio.Composition,
+	composition gotio.Composition,
 	time opentime.RationalTime,
 	opts ...RemoveOption,
 ) error {
@@ -99,7 +99,7 @@ func Remove(
 //   - timeRange: Range of items to remove
 //   - opts: Optional configuration (fill, template)
 func RemoveRange(
-	composition opentimelineio.Composition,
+	composition gotio.Composition,
 	timeRange opentime.TimeRange,
 	opts ...RemoveOption,
 ) error {
@@ -127,7 +127,7 @@ func RemoveRange(
 	lastRange := ranges[len(ranges)-1]
 
 	// Determine what parts to keep
-	var leadingPart, trailingPart opentimelineio.Item
+	var leadingPart, trailingPart gotio.Item
 
 	// Check if we need to keep the beginning of the first item
 	if rangeStart.Cmp(firstRange.StartTime()) > 0 {

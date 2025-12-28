@@ -14,7 +14,7 @@ import (
 	"os"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func main() {
@@ -25,23 +25,23 @@ func main() {
 	inputPath := os.Args[1]
 
 	// Load the timeline
-	obj, err := opentimelineio.FromJSONFile(inputPath)
+	obj, err := gotio.FromJSONFile(inputPath)
 	if err != nil {
 		log.Fatalf("Failed to load %s: %v", inputPath, err)
 	}
 
 	// Type switch to handle different root types
 	switch root := obj.(type) {
-	case *opentimelineio.Timeline:
+	case *gotio.Timeline:
 		printTimeline(root)
-	case *opentimelineio.SerializableCollection:
+	case *gotio.SerializableCollection:
 		printCollection(root)
 	default:
 		fmt.Printf("Root object is %T\n", obj)
 	}
 }
 
-func printTimeline(timeline *opentimelineio.Timeline) {
+func printTimeline(timeline *gotio.Timeline) {
 	fmt.Println("=== Timeline ===")
 	fmt.Printf("Name: %s\n", timeline.Name())
 
@@ -72,7 +72,7 @@ func printTimeline(timeline *opentimelineio.Timeline) {
 
 	// Print each track
 	for i, child := range timeline.Tracks().Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			continue
 		}
@@ -87,7 +87,7 @@ func printTimeline(timeline *opentimelineio.Timeline) {
 	}
 }
 
-func printTrack(track *opentimelineio.Track, index int) {
+func printTrack(track *gotio.Track, index int) {
 	fmt.Printf("\nTrack %d: %s (%s)\n", index, track.Name(), track.Kind())
 
 	dur, _ := track.Duration()
@@ -99,24 +99,24 @@ func printTrack(track *opentimelineio.Track, index int) {
 		childRange, _ := track.RangeOfChildAtIndex(i)
 
 		switch c := child.(type) {
-		case *opentimelineio.Clip:
+		case *gotio.Clip:
 			fmt.Printf("    [%d] Clip: %s @ %.2fs (%.2fs)\n",
 				i, c.Name(),
 				childRange.StartTime().ToSeconds(),
 				childRange.Duration().ToSeconds())
-		case *opentimelineio.Gap:
+		case *gotio.Gap:
 			fmt.Printf("    [%d] Gap @ %.2fs (%.2fs)\n",
 				i,
 				childRange.StartTime().ToSeconds(),
 				childRange.Duration().ToSeconds())
-		case *opentimelineio.Transition:
+		case *gotio.Transition:
 			fmt.Printf("    [%d] Transition: %s (in: %.2fs, out: %.2fs)\n",
 				i, c.TransitionType(),
 				c.InOffset().ToSeconds(),
 				c.OutOffset().ToSeconds())
-		case *opentimelineio.Stack:
+		case *gotio.Stack:
 			fmt.Printf("    [%d] Nested Stack: %s\n", i, c.Name())
-		case *opentimelineio.Track:
+		case *gotio.Track:
 			fmt.Printf("    [%d] Nested Track: %s\n", i, c.Name())
 		default:
 			fmt.Printf("    [%d] %T\n", i, child)
@@ -124,7 +124,7 @@ func printTrack(track *opentimelineio.Track, index int) {
 	}
 }
 
-func printClip(clip *opentimelineio.Clip, index int) {
+func printClip(clip *gotio.Clip, index int) {
 	fmt.Printf("\nClip %d: %s\n", index, clip.Name())
 
 	// Duration
@@ -142,17 +142,17 @@ func printClip(clip *opentimelineio.Clip, index int) {
 	ref := clip.MediaReference()
 	if ref != nil {
 		switch r := ref.(type) {
-		case *opentimelineio.ExternalReference:
+		case *gotio.ExternalReference:
 			fmt.Printf("  Media: %s\n", r.TargetURL())
 			if ar := r.AvailableRange(); ar != nil {
 				fmt.Printf("  Available: %v - %v\n",
 					ar.StartTime(), ar.EndTimeExclusive())
 			}
-		case *opentimelineio.MissingReference:
+		case *gotio.MissingReference:
 			fmt.Println("  Media: MISSING")
-		case *opentimelineio.GeneratorReference:
+		case *gotio.GeneratorReference:
 			fmt.Printf("  Generator: %s\n", r.GeneratorKind())
-		case *opentimelineio.ImageSequenceReference:
+		case *gotio.ImageSequenceReference:
 			fmt.Printf("  Image Sequence: %s\n", r.TargetURLBase())
 		}
 	}
@@ -162,7 +162,7 @@ func printClip(clip *opentimelineio.Clip, index int) {
 		fmt.Printf("  Effects: %d\n", len(effects))
 		for _, e := range effects {
 			fmt.Printf("    - %s (%s)\n", e.Name(), e.EffectName())
-			if ltw, ok := e.(*opentimelineio.LinearTimeWarp); ok {
+			if ltw, ok := e.(*gotio.LinearTimeWarp); ok {
 				fmt.Printf("      Time Scalar: %.2f\n", ltw.TimeScalar())
 			}
 		}
@@ -181,7 +181,7 @@ func printClip(clip *opentimelineio.Clip, index int) {
 	}
 }
 
-func printCollection(coll *opentimelineio.SerializableCollection) {
+func printCollection(coll *gotio.SerializableCollection) {
 	fmt.Println("=== Serializable Collection ===")
 	fmt.Printf("Name: %s\n", coll.Name())
 	fmt.Printf("Children: %d\n", len(coll.Children()))
@@ -192,15 +192,15 @@ func printCollection(coll *opentimelineio.SerializableCollection) {
 	}
 }
 
-func getChildName(obj opentimelineio.SerializableObject) string {
+func getChildName(obj gotio.SerializableObject) string {
 	switch o := obj.(type) {
-	case *opentimelineio.Timeline:
+	case *gotio.Timeline:
 		return o.Name()
-	case *opentimelineio.Clip:
+	case *gotio.Clip:
 		return o.Name()
-	case *opentimelineio.Track:
+	case *gotio.Track:
 		return o.Name()
-	case *opentimelineio.Stack:
+	case *gotio.Stack:
 		return o.Name()
 	default:
 		return ""

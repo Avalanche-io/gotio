@@ -5,22 +5,22 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // FlattenStack flattens a stack (multitrack composition) down to a single track.
 // Tracks are composited in order (later tracks on top of earlier tracks).
 // Overlapping segments are handled by trimming away overlaps from lower tracks.
-func FlattenStack(stack *opentimelineio.Stack) (*opentimelineio.Track, error) {
+func FlattenStack(stack *gotio.Stack) (*gotio.Track, error) {
 	children := stack.Children()
 	if len(children) == 0 {
-		return opentimelineio.NewTrack("Flattened", nil, opentimelineio.TrackKindVideo, nil, nil), nil
+		return gotio.NewTrack("Flattened", nil, gotio.TrackKindVideo, nil, nil), nil
 	}
 
 	// Get tracks from stack
-	var tracks []*opentimelineio.Track
+	var tracks []*gotio.Track
 	for _, child := range children {
-		if track, ok := child.(*opentimelineio.Track); ok {
+		if track, ok := child.(*gotio.Track); ok {
 			tracks = append(tracks, track)
 		}
 	}
@@ -30,17 +30,17 @@ func FlattenStack(stack *opentimelineio.Stack) (*opentimelineio.Track, error) {
 
 // FlattenTracks flattens multiple tracks down to a single track.
 // Later tracks take priority over earlier tracks (later tracks are "on top").
-func FlattenTracks(tracks []*opentimelineio.Track) (*opentimelineio.Track, error) {
+func FlattenTracks(tracks []*gotio.Track) (*gotio.Track, error) {
 	if len(tracks) == 0 {
-		return opentimelineio.NewTrack("Flattened", nil, opentimelineio.TrackKindVideo, nil, nil), nil
+		return gotio.NewTrack("Flattened", nil, gotio.TrackKindVideo, nil, nil), nil
 	}
 
 	if len(tracks) == 1 {
-		return tracks[0].Clone().(*opentimelineio.Track), nil
+		return tracks[0].Clone().(*gotio.Track), nil
 	}
 
 	// Start with the first track
-	result := tracks[0].Clone().(*opentimelineio.Track)
+	result := tracks[0].Clone().(*gotio.Track)
 
 	// For each subsequent track, composite it on top
 	for i := 1; i < len(tracks); i++ {
@@ -57,14 +57,14 @@ func FlattenTracks(tracks []*opentimelineio.Track) (*opentimelineio.Track, error
 
 // compositeTrackOnTop composites the top track onto the base track.
 // Items from the top track take priority over items from the base track.
-func compositeTrackOnTop(base, top *opentimelineio.Track) (*opentimelineio.Track, error) {
+func compositeTrackOnTop(base, top *gotio.Track) (*gotio.Track, error) {
 	// Get time ranges for all items in the top track
 	topRanges := make([]opentime.TimeRange, 0)
-	topItems := make([]opentimelineio.Composable, 0)
+	topItems := make([]gotio.Composable, 0)
 
 	for i, child := range top.Children() {
 		// Skip non-visible items
-		if item, ok := child.(opentimelineio.Item); ok {
+		if item, ok := child.(gotio.Item); ok {
 			if !item.Enabled() {
 				continue
 			}
@@ -76,10 +76,10 @@ func compositeTrackOnTop(base, top *opentimelineio.Track) (*opentimelineio.Track
 		}
 
 		// Skip transitions and gaps for flattening purposes
-		if _, isTransition := child.(*opentimelineio.Transition); isTransition {
+		if _, isTransition := child.(*gotio.Transition); isTransition {
 			continue
 		}
-		if _, isGap := child.(*opentimelineio.Gap); isGap {
+		if _, isGap := child.(*gotio.Gap); isGap {
 			continue
 		}
 
@@ -88,11 +88,11 @@ func compositeTrackOnTop(base, top *opentimelineio.Track) (*opentimelineio.Track
 	}
 
 	// Build result track with base items trimmed around top items
-	result := opentimelineio.NewTrack(
+	result := gotio.NewTrack(
 		base.Name(),
 		base.SourceRange(),
 		base.Kind(),
-		opentimelineio.CloneAnyDictionary(base.Metadata()),
+		gotio.CloneAnyDictionary(base.Metadata()),
 		nil,
 	)
 
@@ -121,8 +121,8 @@ func compositeTrackOnTop(base, top *opentimelineio.Track) (*opentimelineio.Track
 			}
 
 			// Clone and trim the item
-			cloned := child.Clone().(opentimelineio.Composable)
-			if item, ok := cloned.(opentimelineio.Item); ok {
+			cloned := child.Clone().(gotio.Composable)
+			if item, ok := cloned.(gotio.Item); ok {
 				trimItemToRange(item, childRange, r)
 			}
 			result.AppendChild(cloned)
@@ -131,7 +131,7 @@ func compositeTrackOnTop(base, top *opentimelineio.Track) (*opentimelineio.Track
 
 	// Add all top items
 	for _, item := range topItems {
-		result.AppendChild(item.Clone().(opentimelineio.Composable))
+		result.AppendChild(item.Clone().(gotio.Composable))
 	}
 
 	return result, nil
@@ -174,7 +174,7 @@ func subtractRange(a, b opentime.TimeRange) []opentime.TimeRange {
 }
 
 // trimItemToRange trims an item to a sub-range within its original range.
-func trimItemToRange(item opentimelineio.Item, originalRange, newRange opentime.TimeRange) {
+func trimItemToRange(item gotio.Item, originalRange, newRange opentime.TimeRange) {
 	var itemSourceRange opentime.TimeRange
 	if sr := item.SourceRange(); sr != nil {
 		itemSourceRange = *sr
@@ -200,12 +200,12 @@ func trimItemToRange(item opentimelineio.Item, originalRange, newRange opentime.
 // TopClipAtTime returns the topmost visible clip that overlaps with a given time.
 // It walks through tracks from top to bottom (last to first) to find
 // the first visible clip at the specified time.
-func TopClipAtTime(stack *opentimelineio.Stack, t opentime.RationalTime) *opentimelineio.Clip {
+func TopClipAtTime(stack *gotio.Stack, t opentime.RationalTime) *gotio.Clip {
 	children := stack.Children()
 
 	// Walk tracks in reverse order (top to bottom)
 	for i := len(children) - 1; i >= 0; i-- {
-		track, ok := children[i].(*opentimelineio.Track)
+		track, ok := children[i].(*gotio.Track)
 		if !ok {
 			continue
 		}
@@ -221,7 +221,7 @@ func TopClipAtTime(stack *opentimelineio.Stack, t opentime.RationalTime) *openti
 }
 
 // clipAtTimeInTrack finds the clip at the given time in a track.
-func clipAtTimeInTrack(track *opentimelineio.Track, t opentime.RationalTime) *opentimelineio.Clip {
+func clipAtTimeInTrack(track *gotio.Track, t opentime.RationalTime) *gotio.Clip {
 	for i, child := range track.Children() {
 		childRange, err := track.RangeOfChildAtIndex(i)
 		if err != nil {
@@ -234,12 +234,12 @@ func clipAtTimeInTrack(track *opentimelineio.Track, t opentime.RationalTime) *op
 		}
 
 		// If it's a clip, return it
-		if clip, ok := child.(*opentimelineio.Clip); ok {
+		if clip, ok := child.(*gotio.Clip); ok {
 			return clip
 		}
 
 		// If it's a nested composition, recurse
-		if nestedStack, ok := child.(*opentimelineio.Stack); ok {
+		if nestedStack, ok := child.(*gotio.Stack); ok {
 			// Adjust time for nested composition
 			nestedTime := t.Sub(childRange.StartTime())
 			return TopClipAtTime(nestedStack, nestedTime)

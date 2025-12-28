@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // ReferencePoint determines how fill operations place clips.
@@ -41,7 +41,7 @@ type EditError struct {
 	Operation string
 	Message   string
 	Time      *opentime.RationalTime
-	Item      opentimelineio.Composable
+	Item      gotio.Composable
 }
 
 // Error implements the error interface.
@@ -86,7 +86,7 @@ func newEditErrorAt(operation, message string, time opentime.RationalTime) *Edit
 }
 
 // newEditErrorForItem creates a new EditError with item context.
-func newEditErrorForItem(operation, message string, item opentimelineio.Composable) *EditError {
+func newEditErrorForItem(operation, message string, item gotio.Composable) *EditError {
 	return &EditError{
 		Operation: operation,
 		Message:   message,

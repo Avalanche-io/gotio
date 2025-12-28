@@ -19,7 +19,7 @@ import (
 	"os"
 
 	"github.com/Avalanche-io/gotio/algorithms"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func main() {
@@ -31,12 +31,12 @@ func main() {
 	outputPath := os.Args[2]
 
 	// Load the timeline
-	obj, err := opentimelineio.FromJSONFile(inputPath)
+	obj, err := gotio.FromJSONFile(inputPath)
 	if err != nil {
 		log.Fatalf("Failed to load %s: %v", inputPath, err)
 	}
 
-	timeline, ok := obj.(*opentimelineio.Timeline)
+	timeline, ok := obj.(*gotio.Timeline)
 	if !ok {
 		log.Fatalf("Expected Timeline, got %T", obj)
 	}
@@ -78,25 +78,25 @@ func main() {
 		for i, child := range flatTrack.Children() {
 			childRange, _ := flatTrack.RangeOfChildAtIndex(i)
 			switch c := child.(type) {
-			case *opentimelineio.Clip:
+			case *gotio.Clip:
 				fmt.Printf("  [%d] %.2fs - %.2fs: %s\n",
 					i,
 					childRange.StartTime().ToSeconds(),
 					childRange.EndTimeExclusive().ToSeconds(),
 					c.Name())
-			case *opentimelineio.Gap:
+			case *gotio.Gap:
 				fmt.Printf("  [%d] %.2fs - %.2fs: (gap)\n",
 					i,
 					childRange.StartTime().ToSeconds(),
 					childRange.EndTimeExclusive().ToSeconds())
-			case *opentimelineio.Transition:
+			case *gotio.Transition:
 				fmt.Printf("  [%d] transition: %s\n", i, c.TransitionType())
 			}
 		}
 	}
 
 	// Write flattened timeline
-	if err := opentimelineio.ToJSONFile(flattened, outputPath, "  "); err != nil {
+	if err := gotio.ToJSONFile(flattened, outputPath, "  "); err != nil {
 		log.Fatalf("Failed to write %s: %v", outputPath, err)
 	}
 

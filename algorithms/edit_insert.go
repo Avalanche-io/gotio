@@ -5,13 +5,13 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // InsertConfig holds configuration for the Insert operation.
 type InsertConfig struct {
 	RemoveTransitions bool
-	FillTemplate      opentimelineio.Item
+	FillTemplate      gotio.Item
 }
 
 // InsertOption is a functional option for Insert.
@@ -25,7 +25,7 @@ func WithInsertRemoveTransitions(remove bool) InsertOption {
 }
 
 // WithInsertFillTemplate sets the template item to use for filling gaps.
-func WithInsertFillTemplate(template opentimelineio.Item) InsertOption {
+func WithInsertFillTemplate(template gotio.Item) InsertOption {
 	return func(c *InsertConfig) {
 		c.FillTemplate = template
 	}
@@ -45,8 +45,8 @@ func WithInsertFillTemplate(template opentimelineio.Item) InsertOption {
 //   - time: The time at which to insert
 //   - opts: Optional configuration
 func Insert(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	time opentime.RationalTime,
 	opts ...InsertOption,
 ) error {
@@ -59,7 +59,7 @@ func Insert(
 	}
 
 	// Clone the item
-	clonedItem := item.Clone().(opentimelineio.Item)
+	clonedItem := item.Clone().(gotio.Item)
 
 	// Get composition duration
 	compDuration, err := compositionDuration(composition)

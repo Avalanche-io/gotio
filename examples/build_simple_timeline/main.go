@@ -14,7 +14,7 @@ import (
 	"os"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // MediaFile represents a source media file
@@ -68,10 +68,10 @@ func main() {
 	}
 
 	// Create the timeline with metadata
-	timeline := opentimelineio.NewTimeline(
+	timeline := gotio.NewTimeline(
 		"Documentary Edit v1",
 		nil, // no global start time
-		opentimelineio.AnyDictionary{
+		gotio.AnyDictionary{
 			"project":  "My Documentary",
 			"editor":   "Jane Doe",
 			"revision": 1,
@@ -79,10 +79,10 @@ func main() {
 	)
 
 	// Create a video track
-	videoTrack := opentimelineio.NewTrack(
+	videoTrack := gotio.NewTrack(
 		"V1",
 		nil,
-		opentimelineio.TrackKindVideo,
+		gotio.TrackKindVideo,
 		nil,
 		nil,
 	)
@@ -91,7 +91,7 @@ func main() {
 	// Add clips to the track
 	for i, media := range mediaFiles {
 		// Create external reference to the media file
-		ref := opentimelineio.NewExternalReference(
+		ref := gotio.NewExternalReference(
 			media.Name,
 			media.Path,
 			&media.AvailableRange,
@@ -109,11 +109,11 @@ func main() {
 		sourceRange := opentime.NewTimeRange(sourceStart, sourceDuration)
 
 		// Create the clip
-		clip := opentimelineio.NewClip(
+		clip := gotio.NewClip(
 			fmt.Sprintf("Clip %d - %s", i+1, media.Name),
 			ref,
 			&sourceRange,
-			opentimelineio.AnyDictionary{
+			gotio.AnyDictionary{
 				"source_file": media.Path,
 				"clip_index":  i,
 			},
@@ -129,10 +129,10 @@ func main() {
 				opentime.NewRationalTime(24, 24), // 1 second into clip
 				opentime.NewRationalTime(0, 24),  // point marker
 			)
-			marker := opentimelineio.NewMarker(
+			marker := gotio.NewMarker(
 				"Title Card",
 				markerRange,
-				opentimelineio.MarkerColorGreen,
+				gotio.MarkerColorGreen,
 				"Add title overlay here",
 				nil,
 			)
@@ -165,7 +165,7 @@ func main() {
 	fmt.Printf("Total clips: %d\n", len(clips))
 
 	// Write to file
-	if err := opentimelineio.ToJSONFile(timeline, outputPath, "  "); err != nil {
+	if err := gotio.ToJSONFile(timeline, outputPath, "  "); err != nil {
 		log.Fatalf("Failed to write file: %v", err)
 	}
 	fmt.Printf("\nSaved to: %s\n", outputPath)

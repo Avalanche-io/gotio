@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestDetectPython(t *testing.T) {
@@ -59,8 +59,8 @@ func TestBridgeReadWrite(t *testing.T) {
 	defer bridge.Close()
 
 	// Create a simple timeline
-	timeline := opentimelineio.NewTimeline("Test Timeline", nil, nil)
-	track := opentimelineio.NewTrack("V1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("Test Timeline", nil, nil)
+	track := gotio.NewTrack("V1", nil, gotio.TrackKindVideo, nil, nil)
 	timeline.Tracks().AppendChild(track)
 
 	// Write to temp file
@@ -83,7 +83,7 @@ func TestBridgeReadWrite(t *testing.T) {
 		t.Fatalf("ReadWithFormat error: %v", err)
 	}
 
-	readTimeline, ok := obj.(*opentimelineio.Timeline)
+	readTimeline, ok := obj.(*gotio.Timeline)
 	if !ok {
 		t.Fatalf("expected Timeline, got %T", obj)
 	}
@@ -104,8 +104,8 @@ func TestBridgeReadWriteAutoDetect(t *testing.T) {
 	defer bridge.Close()
 
 	// Create a simple timeline
-	timeline := opentimelineio.NewTimeline("Auto Detect Test", nil, nil)
-	track := opentimelineio.NewTrack("V1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("Auto Detect Test", nil, nil)
+	track := gotio.NewTrack("V1", nil, gotio.TrackKindVideo, nil, nil)
 	timeline.Tracks().AppendChild(track)
 
 	// Write using auto-detect (based on file extension)
@@ -123,7 +123,7 @@ func TestBridgeReadWriteAutoDetect(t *testing.T) {
 		t.Fatalf("Read error: %v", err)
 	}
 
-	readTimeline, ok := obj.(*opentimelineio.Timeline)
+	readTimeline, ok := obj.(*gotio.Timeline)
 	if !ok {
 		t.Fatalf("expected Timeline, got %T", obj)
 	}

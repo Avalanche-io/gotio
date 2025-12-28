@@ -5,13 +5,13 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // OverwriteConfig holds configuration for the Overwrite operation.
 type OverwriteConfig struct {
 	RemoveTransitions bool
-	FillTemplate      opentimelineio.Item
+	FillTemplate      gotio.Item
 }
 
 // OverwriteOption is a functional option for Overwrite.
@@ -25,7 +25,7 @@ func WithRemoveTransitions(remove bool) OverwriteOption {
 }
 
 // WithFillTemplate sets the template item to use for filling gaps.
-func WithFillTemplate(template opentimelineio.Item) OverwriteOption {
+func WithFillTemplate(template gotio.Item) OverwriteOption {
 	return func(c *OverwriteConfig) {
 		c.FillTemplate = template
 	}
@@ -45,8 +45,8 @@ func WithFillTemplate(template opentimelineio.Item) OverwriteOption {
 //   - timeRange: The time range to overwrite
 //   - opts: Optional configuration (remove transitions, fill template)
 func Overwrite(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	timeRange opentime.TimeRange,
 	opts ...OverwriteOption,
 ) error {
@@ -59,7 +59,7 @@ func Overwrite(
 	}
 
 	// Clone the item to avoid modifying the original
-	clonedItem := item.Clone().(opentimelineio.Item)
+	clonedItem := item.Clone().(gotio.Item)
 
 	// Set the item's source range to match the overwrite duration if needed
 	if sr := clonedItem.SourceRange(); sr == nil {
@@ -113,8 +113,8 @@ func Overwrite(
 
 // handleEmptyComposition handles overwrite on an empty composition.
 func handleEmptyComposition(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	timeRange opentime.TimeRange,
 	config *OverwriteConfig,
 ) error {
@@ -133,8 +133,8 @@ func handleEmptyComposition(
 
 // handleAppendAfterEnd handles overwrite that starts after composition end.
 func handleAppendAfterEnd(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	timeRange opentime.TimeRange,
 	compEnd opentime.RationalTime,
 	config *OverwriteConfig,
@@ -155,8 +155,8 @@ func handleAppendAfterEnd(
 
 // handleInsertBeforeStart handles overwrite that ends before composition start.
 func handleInsertBeforeStart(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	timeRange opentime.TimeRange,
 	config *OverwriteConfig,
 ) error {
@@ -178,8 +178,8 @@ func handleInsertBeforeStart(
 
 // handleOverwriteMiddle handles overwrite within the composition.
 func handleOverwriteMiddle(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	timeRange opentime.TimeRange,
 	config *OverwriteConfig,
 ) error {
@@ -202,7 +202,7 @@ func handleOverwriteMiddle(
 	lastRange := ranges[len(ranges)-1]
 
 	// Determine what parts to keep
-	var leadingPart, trailingPart opentimelineio.Item
+	var leadingPart, trailingPart gotio.Item
 
 	// Check if we need to keep the beginning of the first item
 	if rangeStart.Cmp(firstRange.StartTime()) > 0 {

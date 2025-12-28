@@ -9,14 +9,14 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestFilteredCompositionKeepAll(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 	timeline.Tracks().AppendChild(track)
 
@@ -25,7 +25,7 @@ func TestFilteredCompositionKeepAll(t *testing.T) {
 		t.Fatal("Result should not be nil")
 	}
 
-	resultTimeline, ok := result.(*opentimelineio.Timeline)
+	resultTimeline, ok := result.(*gotio.Timeline)
 	if !ok {
 		t.Fatal("Result should be a Timeline")
 	}
@@ -36,10 +36,10 @@ func TestFilteredCompositionKeepAll(t *testing.T) {
 }
 
 func TestFilteredCompositionPruneAll(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 	timeline.Tracks().AppendChild(track)
 
@@ -50,17 +50,17 @@ func TestFilteredCompositionPruneAll(t *testing.T) {
 }
 
 func TestFilteredCompositionTypePrune(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
-	gap := opentimelineio.NewGap("gap", &sr, nil, nil, nil, nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	gap := gotio.NewGap("gap", &sr, nil, nil, nil, nil)
 	track.AppendChild(clip)
 	track.AppendChild(gap)
 	timeline.Tracks().AppendChild(track)
 
 	// Prune gaps
-	typesToPrune := []reflect.Type{reflect.TypeOf(&opentimelineio.Gap{})}
+	typesToPrune := []reflect.Type{reflect.TypeOf(&gotio.Gap{})}
 	result := FilteredComposition(timeline, KeepFilter, typesToPrune)
 
 	if result == nil {
@@ -69,11 +69,11 @@ func TestFilteredCompositionTypePrune(t *testing.T) {
 }
 
 func TestTypeFilter(t *testing.T) {
-	filter := TypeFilter(reflect.TypeOf(&opentimelineio.Clip{}))
+	filter := TypeFilter(reflect.TypeOf(&gotio.Clip{}))
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
-	gap := opentimelineio.NewGap("gap", &sr, nil, nil, nil, nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	gap := gotio.NewGap("gap", &sr, nil, nil, nil, nil)
 
 	clipResult := filter(clip)
 	if len(clipResult) != 1 {
@@ -92,8 +92,8 @@ func TestNameFilter(t *testing.T) {
 	})
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	keepClip := opentimelineio.NewClip("keep_clip", nil, &sr, nil, nil, nil, "", nil)
-	pruneClip := opentimelineio.NewClip("prune_clip", nil, &sr, nil, nil, nil, "", nil)
+	keepClip := gotio.NewClip("keep_clip", nil, &sr, nil, nil, nil, "", nil)
+	pruneClip := gotio.NewClip("prune_clip", nil, &sr, nil, nil, nil, "", nil)
 
 	keepResult := filter(keepClip)
 	if len(keepResult) != 1 {
@@ -107,13 +107,13 @@ func TestNameFilter(t *testing.T) {
 }
 
 func TestFilteredWithSequenceContext(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr, nil, nil, nil, "", nil)
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr, nil, nil, nil, "", nil)
-	clip3 := opentimelineio.NewClip("clip3", nil, &sr, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr, nil, nil, nil, "", nil)
+	clip3 := gotio.NewClip("clip3", nil, &sr, nil, nil, nil, "", nil)
 
 	track.AppendChild(clip1)
 	track.AppendChild(clip2)
@@ -121,11 +121,11 @@ func TestFilteredWithSequenceContext(t *testing.T) {
 	timeline.Tracks().AppendChild(track)
 
 	// Filter that keeps items that have both prev and next
-	contextFilter := func(prev, current, next opentimelineio.Composable) []opentimelineio.Composable {
+	contextFilter := func(prev, current, next gotio.Composable) []gotio.Composable {
 		if prev != nil && next != nil {
-			return []opentimelineio.Composable{current}
+			return []gotio.Composable{current}
 		}
-		return []opentimelineio.Composable{current} // Keep all for this test
+		return []gotio.Composable{current} // Keep all for this test
 	}
 
 	result := FilteredWithSequenceContext(timeline, contextFilter, nil)
@@ -142,10 +142,10 @@ func TestFilteredCompositionNil(t *testing.T) {
 }
 
 func TestFilteredCompositionStack(t *testing.T) {
-	stack := opentimelineio.NewStack("stack", nil, nil, nil, nil, nil)
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	stack := gotio.NewStack("stack", nil, nil, nil, nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 	stack.AppendChild(track)
 
@@ -154,7 +154,7 @@ func TestFilteredCompositionStack(t *testing.T) {
 		t.Fatal("Result should not be nil")
 	}
 
-	resultStack, ok := result.(*opentimelineio.Stack)
+	resultStack, ok := result.(*gotio.Stack)
 	if !ok {
 		t.Fatal("Result should be a Stack")
 	}
@@ -165,10 +165,10 @@ func TestFilteredCompositionStack(t *testing.T) {
 }
 
 func TestFilteredCompositionTrack(t *testing.T) {
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr, nil, nil, nil, "", nil)
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip1)
 	track.AppendChild(clip2)
 
@@ -177,7 +177,7 @@ func TestFilteredCompositionTrack(t *testing.T) {
 		t.Fatal("Result should not be nil")
 	}
 
-	resultTrack, ok := result.(*opentimelineio.Track)
+	resultTrack, ok := result.(*gotio.Track)
 	if !ok {
 		t.Fatal("Result should be a Track")
 	}
@@ -188,9 +188,9 @@ func TestFilteredCompositionTrack(t *testing.T) {
 }
 
 func TestFilteredCompositionSerializableCollection(t *testing.T) {
-	coll := opentimelineio.NewSerializableCollection("coll", nil, nil)
+	coll := gotio.NewSerializableCollection("coll", nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	coll.AppendChild(clip)
 
 	result := FilteredComposition(coll, KeepFilter, nil)
@@ -198,7 +198,7 @@ func TestFilteredCompositionSerializableCollection(t *testing.T) {
 		t.Fatal("Result should not be nil")
 	}
 
-	resultColl, ok := result.(*opentimelineio.SerializableCollection)
+	resultColl, ok := result.(*gotio.SerializableCollection)
 	if !ok {
 		t.Fatal("Result should be a SerializableCollection")
 	}

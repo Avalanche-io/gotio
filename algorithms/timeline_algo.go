@@ -5,14 +5,14 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // TimelineTrimmedToRange returns a new timeline trimmed to the given time range.
 // All tracks in the timeline are trimmed to the specified range.
-func TimelineTrimmedToRange(timeline *opentimelineio.Timeline, trimRange opentime.TimeRange) (*opentimelineio.Timeline, error) {
+func TimelineTrimmedToRange(timeline *gotio.Timeline, trimRange opentime.TimeRange) (*gotio.Timeline, error) {
 	// Clone the timeline
-	cloned := timeline.Clone().(*opentimelineio.Timeline)
+	cloned := timeline.Clone().(*gotio.Timeline)
 
 	// Get the tracks stack
 	tracksStack := cloned.Tracks()
@@ -21,10 +21,10 @@ func TimelineTrimmedToRange(timeline *opentimelineio.Timeline, trimRange opentim
 	}
 
 	// Create a new stack for the trimmed tracks
-	newTracks := opentimelineio.NewStack(
+	newTracks := gotio.NewStack(
 		tracksStack.Name(),
 		tracksStack.SourceRange(),
-		opentimelineio.CloneAnyDictionary(tracksStack.Metadata()),
+		gotio.CloneAnyDictionary(tracksStack.Metadata()),
 		nil,
 		nil,
 		nil,
@@ -32,10 +32,10 @@ func TimelineTrimmedToRange(timeline *opentimelineio.Timeline, trimRange opentim
 
 	// Trim each track
 	for _, child := range tracksStack.Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			// Keep non-track children as-is
-			newTracks.AppendChild(child.Clone().(opentimelineio.Composable))
+			newTracks.AppendChild(child.Clone().(gotio.Composable))
 			continue
 		}
 
@@ -49,10 +49,10 @@ func TimelineTrimmedToRange(timeline *opentimelineio.Timeline, trimRange opentim
 	}
 
 	// Create the result timeline with the new tracks
-	result := opentimelineio.NewTimeline(
+	result := gotio.NewTimeline(
 		cloned.Name(),
 		cloned.GlobalStartTime(),
-		opentimelineio.CloneAnyDictionary(cloned.Metadata()),
+		gotio.CloneAnyDictionary(cloned.Metadata()),
 	)
 	result.SetTracks(newTracks)
 
@@ -60,19 +60,19 @@ func TimelineTrimmedToRange(timeline *opentimelineio.Timeline, trimRange opentim
 }
 
 // TimelineAudioTracks returns all audio tracks from a timeline.
-func TimelineAudioTracks(timeline *opentimelineio.Timeline) []*opentimelineio.Track {
+func TimelineAudioTracks(timeline *gotio.Timeline) []*gotio.Track {
 	tracks := timeline.Tracks()
 	if tracks == nil {
 		return nil
 	}
 
-	var audioTracks []*opentimelineio.Track
+	var audioTracks []*gotio.Track
 	for _, child := range tracks.Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			continue
 		}
-		if track.Kind() == opentimelineio.TrackKindAudio {
+		if track.Kind() == gotio.TrackKindAudio {
 			audioTracks = append(audioTracks, track)
 		}
 	}
@@ -81,19 +81,19 @@ func TimelineAudioTracks(timeline *opentimelineio.Timeline) []*opentimelineio.Tr
 }
 
 // TimelineVideoTracks returns all video tracks from a timeline.
-func TimelineVideoTracks(timeline *opentimelineio.Timeline) []*opentimelineio.Track {
+func TimelineVideoTracks(timeline *gotio.Timeline) []*gotio.Track {
 	tracks := timeline.Tracks()
 	if tracks == nil {
 		return nil
 	}
 
-	var videoTracks []*opentimelineio.Track
+	var videoTracks []*gotio.Track
 	for _, child := range tracks.Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			continue
 		}
-		if track.Kind() == opentimelineio.TrackKindVideo {
+		if track.Kind() == gotio.TrackKindVideo {
 			videoTracks = append(videoTracks, track)
 		}
 	}
@@ -103,9 +103,9 @@ func TimelineVideoTracks(timeline *opentimelineio.Timeline) []*opentimelineio.Tr
 
 // FlattenTimelineVideoTracks flattens all video tracks in a timeline to a single track.
 // Audio tracks are preserved unchanged.
-func FlattenTimelineVideoTracks(timeline *opentimelineio.Timeline) (*opentimelineio.Timeline, error) {
+func FlattenTimelineVideoTracks(timeline *gotio.Timeline) (*gotio.Timeline, error) {
 	// Clone the timeline
-	cloned := timeline.Clone().(*opentimelineio.Timeline)
+	cloned := timeline.Clone().(*gotio.Timeline)
 
 	tracks := cloned.Tracks()
 	if tracks == nil {
@@ -113,21 +113,21 @@ func FlattenTimelineVideoTracks(timeline *opentimelineio.Timeline) (*opentimelin
 	}
 
 	// Separate video and audio tracks
-	var videoTracks []*opentimelineio.Track
-	var audioTracks []*opentimelineio.Track
-	var otherChildren []opentimelineio.Composable
+	var videoTracks []*gotio.Track
+	var audioTracks []*gotio.Track
+	var otherChildren []gotio.Composable
 
 	for _, child := range tracks.Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			otherChildren = append(otherChildren, child)
 			continue
 		}
 
 		switch track.Kind() {
-		case opentimelineio.TrackKindVideo:
+		case gotio.TrackKindVideo:
 			videoTracks = append(videoTracks, track)
-		case opentimelineio.TrackKindAudio:
+		case gotio.TrackKindAudio:
 			audioTracks = append(audioTracks, track)
 		default:
 			otherChildren = append(otherChildren, track)
@@ -135,21 +135,21 @@ func FlattenTimelineVideoTracks(timeline *opentimelineio.Timeline) (*opentimelin
 	}
 
 	// Flatten video tracks
-	var flattenedVideo *opentimelineio.Track
+	var flattenedVideo *gotio.Track
 	if len(videoTracks) > 0 {
 		var err error
 		flattenedVideo, err = FlattenTracks(videoTracks)
 		if err != nil {
 			return nil, err
 		}
-		flattenedVideo.SetKind(opentimelineio.TrackKindVideo)
+		flattenedVideo.SetKind(gotio.TrackKindVideo)
 	}
 
 	// Create new tracks stack
-	newTracks := opentimelineio.NewStack(
+	newTracks := gotio.NewStack(
 		tracks.Name(),
 		tracks.SourceRange(),
-		opentimelineio.CloneAnyDictionary(tracks.Metadata()),
+		gotio.CloneAnyDictionary(tracks.Metadata()),
 		nil,
 		nil,
 		nil,
@@ -162,19 +162,19 @@ func FlattenTimelineVideoTracks(timeline *opentimelineio.Timeline) (*opentimelin
 
 	// Add audio tracks
 	for _, track := range audioTracks {
-		newTracks.AppendChild(track.Clone().(opentimelineio.Composable))
+		newTracks.AppendChild(track.Clone().(gotio.Composable))
 	}
 
 	// Add other children
 	for _, child := range otherChildren {
-		newTracks.AppendChild(child.Clone().(opentimelineio.Composable))
+		newTracks.AppendChild(child.Clone().(gotio.Composable))
 	}
 
 	// Create result timeline
-	result := opentimelineio.NewTimeline(
+	result := gotio.NewTimeline(
 		cloned.Name(),
 		cloned.GlobalStartTime(),
-		opentimelineio.CloneAnyDictionary(cloned.Metadata()),
+		gotio.CloneAnyDictionary(cloned.Metadata()),
 	)
 	result.SetTracks(newTracks)
 

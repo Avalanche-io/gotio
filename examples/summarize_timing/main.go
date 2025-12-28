@@ -21,7 +21,7 @@ import (
 	"sort"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func main() {
@@ -32,12 +32,12 @@ func main() {
 	inputPath := os.Args[1]
 
 	// Load the timeline
-	obj, err := opentimelineio.FromJSONFile(inputPath)
+	obj, err := gotio.FromJSONFile(inputPath)
 	if err != nil {
 		log.Fatalf("Failed to load %s: %v", inputPath, err)
 	}
 
-	timeline, ok := obj.(*opentimelineio.Timeline)
+	timeline, ok := obj.(*gotio.Timeline)
 	if !ok {
 		log.Fatalf("Expected Timeline, got %T", obj)
 	}
@@ -62,7 +62,7 @@ func main() {
 	var clipCount int
 
 	for _, child := range timeline.Tracks().Children() {
-		track, ok := child.(*opentimelineio.Track)
+		track, ok := child.(*gotio.Track)
 		if !ok {
 			continue
 		}
@@ -81,10 +81,10 @@ func main() {
 			itemRange, _ := track.RangeOfChildAtIndex(i)
 
 			switch item.(type) {
-			case *opentimelineio.Clip:
+			case *gotio.Clip:
 				trackClipDur += itemRange.Duration().ToSeconds()
 				trackClipCount++
-			case *opentimelineio.Gap:
+			case *gotio.Gap:
 				trackGapDur += itemRange.Duration().ToSeconds()
 			}
 		}
@@ -162,7 +162,7 @@ type mediaStats struct {
 	duration float64
 }
 
-func analyzeMediaUsage(clips []*opentimelineio.Clip) map[string]mediaStats {
+func analyzeMediaUsage(clips []*gotio.Clip) map[string]mediaStats {
 	usage := make(map[string]mediaStats)
 
 	for _, clip := range clips {
@@ -173,11 +173,11 @@ func analyzeMediaUsage(clips []*opentimelineio.Clip) map[string]mediaStats {
 
 		var url string
 		switch r := ref.(type) {
-		case *opentimelineio.ExternalReference:
+		case *gotio.ExternalReference:
 			url = r.TargetURL()
-		case *opentimelineio.MissingReference:
+		case *gotio.MissingReference:
 			url = "(missing)"
-		case *opentimelineio.GeneratorReference:
+		case *gotio.GeneratorReference:
 			url = fmt.Sprintf("generator:%s", r.GeneratorKind())
 		default:
 			url = "(unknown)"

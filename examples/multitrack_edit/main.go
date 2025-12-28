@@ -15,7 +15,7 @@ import (
 	"os"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func main() {
@@ -27,10 +27,10 @@ func main() {
 
 	// Create the timeline
 	globalStart := opentime.NewRationalTime(86400, 24) // 1:00:00:00
-	timeline := opentimelineio.NewTimeline(
+	timeline := gotio.NewTimeline(
 		"Multi-Track Example",
 		&globalStart,
-		opentimelineio.AnyDictionary{
+		gotio.AnyDictionary{
 			"project":     "Demo Project",
 			"frame_rate":  24.0,
 			"resolution":  "1920x1080",
@@ -39,7 +39,7 @@ func main() {
 	)
 
 	// === Video Track 1 (Main) ===
-	v1 := opentimelineio.NewTrack("V1 - Main", nil, opentimelineio.TrackKindVideo, nil, nil)
+	v1 := gotio.NewTrack("V1 - Main", nil, gotio.TrackKindVideo, nil, nil)
 	timeline.Tracks().AppendChild(v1)
 
 	// Add clips to V1
@@ -50,7 +50,7 @@ func main() {
 	addClipToTrack(v1, "Interview_Wide_2", "interview_wide.mov", 300, 150)
 
 	// === Video Track 2 (B-Roll overlay) ===
-	v2 := opentimelineio.NewTrack("V2 - B-Roll", nil, opentimelineio.TrackKindVideo, nil, nil)
+	v2 := gotio.NewTrack("V2 - B-Roll", nil, gotio.TrackKindVideo, nil, nil)
 	timeline.Tracks().AppendChild(v2)
 
 	// Add gap to offset the B-roll
@@ -60,7 +60,7 @@ func main() {
 	brollClip := addClipToTrack(v2, "BRoll_City", "broll_city.mov", 0, 72)
 
 	// Add a speed effect to B-roll (slow motion)
-	slowMo := opentimelineio.NewLinearTimeWarp(
+	slowMo := gotio.NewLinearTimeWarp(
 		"slow_motion",
 		"LinearTimeWarp",
 		0.5, // 50% speed
@@ -72,20 +72,20 @@ func main() {
 	addClipToTrack(v2, "BRoll_Nature", "broll_nature.mov", 24, 96)
 
 	// === Video Track 3 (Graphics) ===
-	v3 := opentimelineio.NewTrack("V3 - Graphics", nil, opentimelineio.TrackKindVideo, nil, nil)
+	v3 := gotio.NewTrack("V3 - Graphics", nil, gotio.TrackKindVideo, nil, nil)
 	timeline.Tracks().AppendChild(v3)
 
 	// Title card at the beginning
 	titleClip := addClipToTrack(v3, "Title_Card", "title.png", 0, 72)
 
 	// Add marker for title
-	titleMarker := opentimelineio.NewMarker(
+	titleMarker := gotio.NewMarker(
 		"Title Start",
 		opentime.NewTimeRange(
 			opentime.NewRationalTime(0, 24),
 			opentime.NewRationalTime(0, 24),
 		),
-		opentimelineio.MarkerColorGreen,
+		gotio.MarkerColorGreen,
 		"Title card begins here",
 		nil,
 	)
@@ -96,7 +96,7 @@ func main() {
 	addClipToTrack(v3, "Lower_Third", "lower_third.mov", 0, 72)
 
 	// === Audio Track 1 (Dialog) ===
-	a1 := opentimelineio.NewTrack("A1 - Dialog", nil, opentimelineio.TrackKindAudio, nil, nil)
+	a1 := gotio.NewTrack("A1 - Dialog", nil, gotio.TrackKindAudio, nil, nil)
 	timeline.Tracks().AppendChild(a1)
 
 	// Audio follows video
@@ -105,27 +105,27 @@ func main() {
 	addClipToTrack(a1, "Dialog_3", "dialog_03.wav", 0, 150)
 
 	// === Audio Track 2 (Music) ===
-	a2 := opentimelineio.NewTrack("A2 - Music", nil, opentimelineio.TrackKindAudio, nil, nil)
+	a2 := gotio.NewTrack("A2 - Music", nil, gotio.TrackKindAudio, nil, nil)
 	timeline.Tracks().AppendChild(a2)
 
 	// Music runs under everything
 	musicClip := addClipToTrack(a2, "Background_Music", "music_bed.wav", 0, 600)
 
 	// Mark music cue points
-	musicMarker1 := opentimelineio.NewMarker(
+	musicMarker1 := gotio.NewMarker(
 		"Music Build",
 		opentime.NewTimeRange(
 			opentime.NewRationalTime(96, 24),
 			opentime.NewRationalTime(0, 24),
 		),
-		opentimelineio.MarkerColorYellow,
+		gotio.MarkerColorYellow,
 		"Music intensity increases",
 		nil,
 	)
 	musicClip.SetMarkers(append(musicClip.Markers(), musicMarker1))
 
 	// === Audio Track 3 (SFX) ===
-	a3 := opentimelineio.NewTrack("A3 - SFX", nil, opentimelineio.TrackKindAudio, nil, nil)
+	a3 := gotio.NewTrack("A3 - SFX", nil, gotio.TrackKindAudio, nil, nil)
 	timeline.Tracks().AppendChild(a3)
 
 	// Spot SFX
@@ -138,13 +138,13 @@ func main() {
 	printTimelineSummary(timeline)
 
 	// Write to file
-	if err := opentimelineio.ToJSONFile(timeline, outputPath, "  "); err != nil {
+	if err := gotio.ToJSONFile(timeline, outputPath, "  "); err != nil {
 		log.Fatalf("Failed to write file: %v", err)
 	}
 	fmt.Printf("\nSaved to: %s\n", outputPath)
 }
 
-func addClipToTrack(track *opentimelineio.Track, name, file string, startFrame, duration float64) *opentimelineio.Clip {
+func addClipToTrack(track *gotio.Track, name, file string, startFrame, duration float64) *gotio.Clip {
 	sourceRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(startFrame, 24),
 		opentime.NewRationalTime(duration, 24),
@@ -155,14 +155,14 @@ func addClipToTrack(track *opentimelineio.Track, name, file string, startFrame, 
 		opentime.NewRationalTime(duration+startFrame+100, 24), // More available than used
 	)
 
-	ref := opentimelineio.NewExternalReference(
+	ref := gotio.NewExternalReference(
 		name,
 		"file:///media/"+file,
 		&availableRange,
 		nil,
 	)
 
-	clip := opentimelineio.NewClip(
+	clip := gotio.NewClip(
 		name,
 		ref,
 		&sourceRange,
@@ -176,8 +176,8 @@ func addClipToTrack(track *opentimelineio.Track, name, file string, startFrame, 
 	return clip
 }
 
-func addGap(track *opentimelineio.Track, frames float64) {
-	gap := opentimelineio.NewGapWithDuration(
+func addGap(track *gotio.Track, frames float64) {
+	gap := gotio.NewGapWithDuration(
 		opentime.NewRationalTime(frames, 24),
 	)
 	if err := track.AppendChild(gap); err != nil {
@@ -185,10 +185,10 @@ func addGap(track *opentimelineio.Track, frames float64) {
 	}
 }
 
-func addTransition(track *opentimelineio.Track, frames float64) {
-	transition := opentimelineio.NewTransition(
+func addTransition(track *gotio.Track, frames float64) {
+	transition := gotio.NewTransition(
 		"Dissolve",
-		opentimelineio.TransitionTypeSMPTEDissolve,
+		gotio.TransitionTypeSMPTEDissolve,
 		opentime.NewRationalTime(frames, 24),
 		opentime.NewRationalTime(frames, 24),
 		nil,
@@ -198,7 +198,7 @@ func addTransition(track *opentimelineio.Track, frames float64) {
 	}
 }
 
-func printTimelineSummary(timeline *opentimelineio.Timeline) {
+func printTimelineSummary(timeline *gotio.Timeline) {
 	fmt.Println("\n=== Timeline Summary ===")
 	fmt.Printf("Name: %s\n", timeline.Name())
 

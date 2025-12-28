@@ -7,11 +7,11 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestFlattenStackEmpty(t *testing.T) {
-	stack := opentimelineio.NewStack("empty", nil, nil, nil, nil, nil)
+	stack := gotio.NewStack("empty", nil, nil, nil, nil, nil)
 
 	result, err := FlattenStack(stack)
 	if err != nil {
@@ -24,11 +24,11 @@ func TestFlattenStackEmpty(t *testing.T) {
 }
 
 func TestFlattenStackSingleTrack(t *testing.T) {
-	stack := opentimelineio.NewStack("single", nil, nil, nil, nil, nil)
+	stack := gotio.NewStack("single", nil, nil, nil, nil, nil)
 
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	stack.AppendChild(track)
@@ -44,22 +44,22 @@ func TestFlattenStackSingleTrack(t *testing.T) {
 }
 
 func TestFlattenStackMultipleTracks(t *testing.T) {
-	stack := opentimelineio.NewStack("multi", nil, nil, nil, nil, nil)
+	stack := gotio.NewStack("multi", nil, nil, nil, nil, nil)
 
 	// First track: clip from 0-48
-	track1 := opentimelineio.NewTrack("track1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track1 := gotio.NewTrack("track1", nil, gotio.TrackKindVideo, nil, nil)
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track1.AppendChild(clip1)
 
 	// Second track: clip from 24-72 (overlaps with first)
-	track2 := opentimelineio.NewTrack("track2", nil, opentimelineio.TrackKindVideo, nil, nil)
-	gap := opentimelineio.NewGap("gap", &opentime.TimeRange{}, nil, nil, nil, nil)
+	track2 := gotio.NewTrack("track2", nil, gotio.TrackKindVideo, nil, nil)
+	gap := gotio.NewGap("gap", &opentime.TimeRange{}, nil, nil, nil, nil)
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
 	gap.SetSourceRange(&gapRange)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track2.AppendChild(gap)
 	track2.AppendChild(clip2)
 
@@ -76,17 +76,17 @@ func TestFlattenStackMultipleTracks(t *testing.T) {
 
 func TestFlattenTracks(t *testing.T) {
 	// Create two tracks
-	track1 := opentimelineio.NewTrack("track1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track1 := gotio.NewTrack("track1", nil, gotio.TrackKindVideo, nil, nil)
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track1.AppendChild(clip1)
 
-	track2 := opentimelineio.NewTrack("track2", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track2 := gotio.NewTrack("track2", nil, gotio.TrackKindVideo, nil, nil)
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track2.AppendChild(clip2)
 
-	result, err := FlattenTracks([]*opentimelineio.Track{track1, track2})
+	result, err := FlattenTracks([]*gotio.Track{track1, track2})
 	if err != nil {
 		t.Fatalf("FlattenTracks error: %v", err)
 	}
@@ -108,9 +108,9 @@ func TestFlattenTracksEmpty(t *testing.T) {
 }
 
 func TestFlattenTracksSingle(t *testing.T) {
-	track := opentimelineio.NewTrack("track", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("track", nil, gotio.TrackKindVideo, nil, nil)
 
-	result, err := FlattenTracks([]*opentimelineio.Track{track})
+	result, err := FlattenTracks([]*gotio.Track{track})
 	if err != nil {
 		t.Fatalf("FlattenTracks error: %v", err)
 	}
@@ -122,20 +122,20 @@ func TestFlattenTracksSingle(t *testing.T) {
 }
 
 func TestTopClipAtTime(t *testing.T) {
-	stack := opentimelineio.NewStack("stack", nil, nil, nil, nil, nil)
+	stack := gotio.NewStack("stack", nil, nil, nil, nil, nil)
 
 	// First track: clip from 0-48
-	track1 := opentimelineio.NewTrack("track1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track1 := gotio.NewTrack("track1", nil, gotio.TrackKindVideo, nil, nil)
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	track1.AppendChild(clip1)
 
 	// Second track: clip from 24-72
-	track2 := opentimelineio.NewTrack("track2", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track2 := gotio.NewTrack("track2", nil, gotio.TrackKindVideo, nil, nil)
 	gapRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	gap := opentimelineio.NewGap("gap", &gapRange, nil, nil, nil, nil)
+	gap := gotio.NewGap("gap", &gapRange, nil, nil, nil, nil)
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	track2.AppendChild(gap)
 	track2.AppendChild(clip2)
 
@@ -160,7 +160,7 @@ func TestTopClipAtTime(t *testing.T) {
 }
 
 func TestTopClipAtTimeEmpty(t *testing.T) {
-	stack := opentimelineio.NewStack("empty", nil, nil, nil, nil, nil)
+	stack := gotio.NewStack("empty", nil, nil, nil, nil, nil)
 
 	clip := TopClipAtTime(stack, opentime.NewRationalTime(0, 24))
 	if clip != nil {

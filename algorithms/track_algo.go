@@ -8,18 +8,18 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // TrackTrimmedToRange returns a new track trimmed to the given time range.
 // Items outside the range are removed, items on the ends are trimmed.
 // This never expands the track, only shortens it.
-func TrackTrimmedToRange(track *opentimelineio.Track, trimRange opentime.TimeRange) (*opentimelineio.Track, error) {
+func TrackTrimmedToRange(track *gotio.Track, trimRange opentime.TimeRange) (*gotio.Track, error) {
 	// Clone the track to not modify the original
-	cloned := track.Clone().(*opentimelineio.Track)
+	cloned := track.Clone().(*gotio.Track)
 
 	// Calculate what to keep
-	var newChildren []opentimelineio.Composable
+	var newChildren []gotio.Composable
 
 	runningOffset := opentime.NewRationalTime(0, trimRange.StartTime().Rate())
 
@@ -38,7 +38,7 @@ func TrackTrimmedToRange(track *opentimelineio.Track, trimRange opentime.TimeRan
 		intersection := intersectRanges(childRange, trimRange)
 
 		// Get the child's trimmed range
-		item, isItem := child.(opentimelineio.Item)
+		item, isItem := child.(gotio.Item)
 		if !isItem {
 			continue
 		}
@@ -64,8 +64,8 @@ func TrackTrimmedToRange(track *opentimelineio.Track, trimRange opentime.TimeRan
 		newSourceRange := opentime.NewTimeRange(newSourceStart, newSourceDuration)
 
 		// Clone the child and set the new source range
-		clonedChild := child.Clone().(opentimelineio.Composable)
-		if clonedItem, ok := clonedChild.(opentimelineio.Item); ok {
+		clonedChild := child.Clone().(gotio.Composable)
+		if clonedItem, ok := clonedChild.(gotio.Item); ok {
 			clonedItem.SetSourceRange(&newSourceRange)
 		}
 
@@ -74,11 +74,11 @@ func TrackTrimmedToRange(track *opentimelineio.Track, trimRange opentime.TimeRan
 	}
 
 	// Create a new track with the trimmed children
-	result := opentimelineio.NewTrack(
+	result := gotio.NewTrack(
 		cloned.Name(),
 		cloned.SourceRange(),
 		cloned.Kind(),
-		opentimelineio.CloneAnyDictionary(cloned.Metadata()),
+		gotio.CloneAnyDictionary(cloned.Metadata()),
 		nil,
 	)
 
@@ -119,9 +119,9 @@ func intersectRanges(a, b opentime.TimeRange) opentime.TimeRange {
 // For example, [Clip1, T, Clip2] becomes [Clip1', (Clip1_t, T, Clip2_t), Clip2']
 // where the clips adjacent to the transition are trimmed and the overlapping
 // portions are placed alongside the transition.
-func TrackWithExpandedTransitions(track *opentimelineio.Track) (*opentimelineio.Track, error) {
+func TrackWithExpandedTransitions(track *gotio.Track) (*gotio.Track, error) {
 	// Clone the track
-	cloned := track.Clone().(*opentimelineio.Track)
+	cloned := track.Clone().(*gotio.Track)
 
 	children := cloned.Children()
 	if len(children) == 0 {
@@ -129,24 +129,24 @@ func TrackWithExpandedTransitions(track *opentimelineio.Track) (*opentimelineio.
 	}
 
 	// Find transitions and expand them
-	var newChildren []opentimelineio.Composable
+	var newChildren []gotio.Composable
 
 	for i, child := range children {
-		transition, isTransition := child.(*opentimelineio.Transition)
+		transition, isTransition := child.(*gotio.Transition)
 		if !isTransition {
-			newChildren = append(newChildren, child.Clone().(opentimelineio.Composable))
+			newChildren = append(newChildren, child.Clone().(gotio.Composable))
 			continue
 		}
 
 		// Get adjacent clips
-		var prevItem, nextItem opentimelineio.Item
+		var prevItem, nextItem gotio.Item
 		if i > 0 {
-			if item, ok := children[i-1].(opentimelineio.Item); ok {
+			if item, ok := children[i-1].(gotio.Item); ok {
 				prevItem = item
 			}
 		}
 		if i < len(children)-1 {
-			if item, ok := children[i+1].(opentimelineio.Item); ok {
+			if item, ok := children[i+1].(gotio.Item); ok {
 				nextItem = item
 			}
 		}
@@ -157,11 +157,11 @@ func TrackWithExpandedTransitions(track *opentimelineio.Track) (*opentimelineio.
 	}
 
 	// Create result track
-	result := opentimelineio.NewTrack(
+	result := gotio.NewTrack(
 		cloned.Name(),
 		cloned.SourceRange(),
 		cloned.Kind(),
-		opentimelineio.CloneAnyDictionary(cloned.Metadata()),
+		gotio.CloneAnyDictionary(cloned.Metadata()),
 		nil,
 	)
 
@@ -173,8 +173,8 @@ func TrackWithExpandedTransitions(track *opentimelineio.Track) (*opentimelineio.
 }
 
 // expandTransition expands a transition into its overlapping clip portions.
-func expandTransition(transition *opentimelineio.Transition, prevItem, nextItem opentimelineio.Item) []opentimelineio.Composable {
-	var result []opentimelineio.Composable
+func expandTransition(transition *gotio.Transition, prevItem, nextItem gotio.Item) []gotio.Composable {
+	var result []gotio.Composable
 
 	// Get transition durations
 	inOffset := transition.InOffset()
@@ -183,29 +183,29 @@ func expandTransition(transition *opentimelineio.Transition, prevItem, nextItem 
 	// Create the overlapping portion from previous item (if any)
 	if prevItem != nil {
 		// Clone and trim the previous item to show only the overlap portion
-		clonedPrev := prevItem.Clone().(opentimelineio.Item)
+		clonedPrev := prevItem.Clone().(gotio.Item)
 		if sr := clonedPrev.SourceRange(); sr != nil {
 			// Trim to just the out-going portion
 			trimStart := sr.EndTimeExclusive().Sub(inOffset)
 			trimRange := opentime.NewTimeRange(trimStart, inOffset)
 			clonedPrev.SetSourceRange(&trimRange)
 		}
-		result = append(result, clonedPrev.(opentimelineio.Composable))
+		result = append(result, clonedPrev.(gotio.Composable))
 	}
 
 	// Add the transition itself
-	result = append(result, transition.Clone().(opentimelineio.Composable))
+	result = append(result, transition.Clone().(gotio.Composable))
 
 	// Create the overlapping portion from next item (if any)
 	if nextItem != nil {
 		// Clone and trim the next item to show only the overlap portion
-		clonedNext := nextItem.Clone().(opentimelineio.Item)
+		clonedNext := nextItem.Clone().(gotio.Item)
 		if sr := clonedNext.SourceRange(); sr != nil {
 			// Trim to just the in-coming portion
 			trimRange := opentime.NewTimeRange(sr.StartTime(), outOffset)
 			clonedNext.SetSourceRange(&trimRange)
 		}
-		result = append(result, clonedNext.(opentimelineio.Composable))
+		result = append(result, clonedNext.(gotio.Composable))
 	}
 
 	return result

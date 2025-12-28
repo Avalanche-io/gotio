@@ -157,7 +157,7 @@ import (
 	"github.com/Avalanche-io/gotio/opentime"
 	{{- end}}
 	{{- if $hasOTIO}}
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 	{{- end}}
 )
 
@@ -167,7 +167,7 @@ func encode{{.Name}}(enc *Encoder, v any) error {
 	{{- if isOpentime .}}
 	t := v.(opentime.{{.Name}})
 	{{- else}}
-	t := v.(*opentimelineio.{{.Name}})
+	t := v.(*gotio.{{.Name}})
 	{{- end}}
 	enc.BeginObject()
 	enc.WriteStringField("OTIO_SCHEMA", "{{.SchemaName}}.{{.SchemaVersion}}")
@@ -259,7 +259,7 @@ func init() {
 		{{- if isOpentime .}}
 		GoType:        reflect.TypeOf(opentime.{{.Name}}{}),
 		{{- else}}
-		GoType:        reflect.TypeOf((*opentimelineio.{{.Name}})(nil)),
+		GoType:        reflect.TypeOf((*gotio.{{.Name}})(nil)),
 		{{- end}}
 		Encode:        encode{{.Name}},
 	})
@@ -286,7 +286,7 @@ import (
 	"github.com/Avalanche-io/gotio/opentime"
 	{{- end}}
 	{{- if $hasOTIO}}
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 	{{- end}}
 )
 
@@ -321,7 +321,7 @@ func decode{{.Name}}(data []byte) (any, error) {
 {{- else}}
 // decode{{.Name}} decodes a {{.Name}} from JSON.
 func decode{{.Name}}(data []byte) (any, error) {
-	result := &opentimelineio.{{.Name}}{}
+	result := &gotio.{{.Name}}{}
 	if err := json.Unmarshal(data, result); err != nil {
 		return nil, err
 	}

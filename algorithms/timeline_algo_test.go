@@ -7,18 +7,18 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestTimelineTrimmedToRange(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
 
 	// Add a video track with clips
-	videoTrack := opentimelineio.NewTrack("video", nil, opentimelineio.TrackKindVideo, nil, nil)
+	videoTrack := gotio.NewTrack("video", nil, gotio.TrackKindVideo, nil, nil)
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	videoTrack.AppendChild(clip1)
 	videoTrack.AppendChild(clip2)
 	timeline.Tracks().AppendChild(videoTrack)
@@ -39,7 +39,7 @@ func TestTimelineTrimmedToRange(t *testing.T) {
 }
 
 func TestTimelineTrimmedToRangeEmpty(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("empty", nil, nil)
+	timeline := gotio.NewTimeline("empty", nil, nil)
 
 	trimRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
 
@@ -54,11 +54,11 @@ func TestTimelineTrimmedToRangeEmpty(t *testing.T) {
 }
 
 func TestTimelineAudioTracks(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
 
-	videoTrack := opentimelineio.NewTrack("video", nil, opentimelineio.TrackKindVideo, nil, nil)
-	audioTrack1 := opentimelineio.NewTrack("audio1", nil, opentimelineio.TrackKindAudio, nil, nil)
-	audioTrack2 := opentimelineio.NewTrack("audio2", nil, opentimelineio.TrackKindAudio, nil, nil)
+	videoTrack := gotio.NewTrack("video", nil, gotio.TrackKindVideo, nil, nil)
+	audioTrack1 := gotio.NewTrack("audio1", nil, gotio.TrackKindAudio, nil, nil)
+	audioTrack2 := gotio.NewTrack("audio2", nil, gotio.TrackKindAudio, nil, nil)
 
 	timeline.Tracks().AppendChild(videoTrack)
 	timeline.Tracks().AppendChild(audioTrack1)
@@ -71,7 +71,7 @@ func TestTimelineAudioTracks(t *testing.T) {
 }
 
 func TestTimelineAudioTracksEmpty(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("empty", nil, nil)
+	timeline := gotio.NewTimeline("empty", nil, nil)
 
 	audioTracks := TimelineAudioTracks(timeline)
 	if len(audioTracks) != 0 {
@@ -80,11 +80,11 @@ func TestTimelineAudioTracksEmpty(t *testing.T) {
 }
 
 func TestTimelineVideoTracks(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
 
-	videoTrack1 := opentimelineio.NewTrack("video1", nil, opentimelineio.TrackKindVideo, nil, nil)
-	videoTrack2 := opentimelineio.NewTrack("video2", nil, opentimelineio.TrackKindVideo, nil, nil)
-	audioTrack := opentimelineio.NewTrack("audio", nil, opentimelineio.TrackKindAudio, nil, nil)
+	videoTrack1 := gotio.NewTrack("video1", nil, gotio.TrackKindVideo, nil, nil)
+	videoTrack2 := gotio.NewTrack("video2", nil, gotio.TrackKindVideo, nil, nil)
+	audioTrack := gotio.NewTrack("audio", nil, gotio.TrackKindAudio, nil, nil)
 
 	timeline.Tracks().AppendChild(videoTrack1)
 	timeline.Tracks().AppendChild(videoTrack2)
@@ -97,7 +97,7 @@ func TestTimelineVideoTracks(t *testing.T) {
 }
 
 func TestTimelineVideoTracksEmpty(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("empty", nil, nil)
+	timeline := gotio.NewTimeline("empty", nil, nil)
 
 	videoTracks := TimelineVideoTracks(timeline)
 	if len(videoTracks) != 0 {
@@ -106,23 +106,23 @@ func TestTimelineVideoTracksEmpty(t *testing.T) {
 }
 
 func TestFlattenTimelineVideoTracks(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
 
 	// Add two video tracks
-	videoTrack1 := opentimelineio.NewTrack("video1", nil, opentimelineio.TrackKindVideo, nil, nil)
+	videoTrack1 := gotio.NewTrack("video1", nil, gotio.TrackKindVideo, nil, nil)
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 	videoTrack1.AppendChild(clip1)
 
-	videoTrack2 := opentimelineio.NewTrack("video2", nil, opentimelineio.TrackKindVideo, nil, nil)
+	videoTrack2 := gotio.NewTrack("video2", nil, gotio.TrackKindVideo, nil, nil)
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(24, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 	videoTrack2.AppendChild(clip2)
 
 	// Add an audio track
-	audioTrack := opentimelineio.NewTrack("audio", nil, opentimelineio.TrackKindAudio, nil, nil)
+	audioTrack := gotio.NewTrack("audio", nil, gotio.TrackKindAudio, nil, nil)
 	sr3 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	audioClip := opentimelineio.NewClip("audio_clip", nil, &sr3, nil, nil, nil, "", nil)
+	audioClip := gotio.NewClip("audio_clip", nil, &sr3, nil, nil, nil, "", nil)
 	audioTrack.AppendChild(audioClip)
 
 	timeline.Tracks().AppendChild(videoTrack1)
@@ -147,7 +147,7 @@ func TestFlattenTimelineVideoTracks(t *testing.T) {
 }
 
 func TestFlattenTimelineVideoTracksEmpty(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("empty", nil, nil)
+	timeline := gotio.NewTimeline("empty", nil, nil)
 
 	result, err := FlattenTimelineVideoTracks(timeline)
 	if err != nil {
@@ -160,10 +160,10 @@ func TestFlattenTimelineVideoTracksEmpty(t *testing.T) {
 }
 
 func TestFlattenTimelineVideoTracksNoVideo(t *testing.T) {
-	timeline := opentimelineio.NewTimeline("test", nil, nil)
+	timeline := gotio.NewTimeline("test", nil, nil)
 
 	// Only audio track
-	audioTrack := opentimelineio.NewTrack("audio", nil, opentimelineio.TrackKindAudio, nil, nil)
+	audioTrack := gotio.NewTrack("audio", nil, gotio.TrackKindAudio, nil, nil)
 	timeline.Tracks().AppendChild(audioTrack)
 
 	result, err := FlattenTimelineVideoTracks(timeline)

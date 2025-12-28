@@ -7,21 +7,21 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestTrackTrimmedToRange(t *testing.T) {
 	// Create a track with multiple clips
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 
 	sr3 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip3 := opentimelineio.NewClip("clip3", nil, &sr3, nil, nil, nil, "", nil)
+	clip3 := gotio.NewClip("clip3", nil, &sr3, nil, nil, nil, "", nil)
 
 	track.AppendChild(clip1)
 	track.AppendChild(clip2)
@@ -45,7 +45,7 @@ func TestTrackTrimmedToRange(t *testing.T) {
 }
 
 func TestTrackTrimmedToRangeEmpty(t *testing.T) {
-	track := opentimelineio.NewTrack("empty", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("empty", nil, gotio.TrackKindVideo, nil, nil)
 
 	trimRange := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
 
@@ -75,17 +75,17 @@ func TestIntersectRanges(t *testing.T) {
 }
 
 func TestTrackWithExpandedTransitions(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr1 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip1 := opentimelineio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
+	clip1 := gotio.NewClip("clip1", nil, &sr1, nil, nil, nil, "", nil)
 
 	sr2 := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip2 := opentimelineio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
+	clip2 := gotio.NewClip("clip2", nil, &sr2, nil, nil, nil, "", nil)
 
 	inOffset := opentime.NewRationalTime(12, 24)
 	outOffset := opentime.NewRationalTime(12, 24)
-	transition := opentimelineio.NewTransition("dissolve", "SMPTE_Dissolve", inOffset, outOffset, nil)
+	transition := gotio.NewTransition("dissolve", "SMPTE_Dissolve", inOffset, outOffset, nil)
 
 	track.AppendChild(clip1)
 	track.AppendChild(transition)
@@ -101,10 +101,10 @@ func TestTrackWithExpandedTransitions(t *testing.T) {
 }
 
 func TestTrackWithExpandedTransitionsNoTransitions(t *testing.T) {
-	track := opentimelineio.NewTrack("test", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("test", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(opentime.NewRationalTime(0, 24), opentime.NewRationalTime(48, 24))
-	clip := opentimelineio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
+	clip := gotio.NewClip("clip", nil, &sr, nil, nil, nil, "", nil)
 	track.AppendChild(clip)
 
 	result, err := TrackWithExpandedTransitions(track)
@@ -118,7 +118,7 @@ func TestTrackWithExpandedTransitionsNoTransitions(t *testing.T) {
 }
 
 func TestTrackWithExpandedTransitionsEmpty(t *testing.T) {
-	track := opentimelineio.NewTrack("empty", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("empty", nil, gotio.TrackKindVideo, nil, nil)
 
 	result, err := TrackWithExpandedTransitions(track)
 	if err != nil {

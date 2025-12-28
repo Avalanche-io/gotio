@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Roll moves an edit point, adjusting both adjacent items.
@@ -22,8 +22,8 @@ import (
 //   - deltaIn: Amount to roll the in-point (positive = roll right)
 //   - deltaOut: Amount to roll the out-point (positive = roll right)
 func Roll(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	deltaIn opentime.RationalTime,
 	deltaOut opentime.RationalTime,
 ) error {
@@ -66,8 +66,8 @@ func Roll(
 
 // rollInPoint rolls the in-point between this item and the previous item.
 func rollInPoint(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	itemIndex int,
 	sourceRange opentime.TimeRange,
 	deltaIn opentime.RationalTime,
@@ -144,8 +144,8 @@ func rollInPoint(
 
 // rollOutPoint rolls the out-point between this item and the next item.
 func rollOutPoint(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	itemIndex int,
 	sourceRange opentime.TimeRange,
 	deltaOut opentime.RationalTime,

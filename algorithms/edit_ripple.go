@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Ripple adjusts an item's source range with clamping to available media.
@@ -23,7 +23,7 @@ import (
 //   - deltaIn: Adjustment to source_range start
 //   - deltaOut: Adjustment to source_range end (duration change)
 func Ripple(
-	item opentimelineio.Item,
+	item gotio.Item,
 	deltaIn opentime.RationalTime,
 	deltaOut opentime.RationalTime,
 ) error {

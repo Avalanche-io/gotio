@@ -6,7 +6,7 @@ package algorithms
 import (
 	"reflect"
 
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // FilterFunc is a function that filters/transforms a composable.
@@ -14,11 +14,11 @@ import (
 // - The modified composable (or original to keep unchanged)
 // - A slice of composables to expand the item into multiple items
 // - nil to remove the item
-type FilterFunc func(composable opentimelineio.Composable) []opentimelineio.Composable
+type FilterFunc func(composable gotio.Composable) []gotio.Composable
 
 // ContextFilterFunc is like FilterFunc but also receives previous and next items
 // for context-aware filtering.
-type ContextFilterFunc func(prev, current, next opentimelineio.Composable) []opentimelineio.Composable
+type ContextFilterFunc func(prev, current, next gotio.Composable) []gotio.Composable
 
 // FilteredComposition returns a deep-copy filtered composition tree.
 // The filter function is called for each composable and can:
@@ -27,18 +27,18 @@ type ContextFilterFunc func(prev, current, next opentimelineio.Composable) []ope
 // - Return nil or empty slice to prune the item
 // typesToPrune optionally specifies types to automatically prune.
 func FilteredComposition(
-	root opentimelineio.SerializableObject,
+	root gotio.SerializableObject,
 	filter FilterFunc,
 	typesToPrune []reflect.Type,
-) opentimelineio.SerializableObject {
+) gotio.SerializableObject {
 	return filteredCompositionRecursive(root, filter, typesToPrune)
 }
 
 func filteredCompositionRecursive(
-	obj opentimelineio.SerializableObject,
+	obj gotio.SerializableObject,
 	filter FilterFunc,
 	typesToPrune []reflect.Type,
-) opentimelineio.SerializableObject {
+) gotio.SerializableObject {
 	if obj == nil {
 		return nil
 	}
@@ -54,7 +54,7 @@ func filteredCompositionRecursive(
 	cloned := obj.Clone()
 
 	// If it's a composable, apply the filter
-	if composable, ok := cloned.(opentimelineio.Composable); ok {
+	if composable, ok := cloned.(gotio.Composable); ok {
 		result := filter(composable)
 		if len(result) == 0 {
 			return nil
@@ -68,31 +68,31 @@ func filteredCompositionRecursive(
 
 	// Process children if this is a composition
 	switch comp := cloned.(type) {
-	case *opentimelineio.Timeline:
+	case *gotio.Timeline:
 		// Process the tracks
 		if tracks := comp.Tracks(); tracks != nil {
 			filtered := filteredCompositionRecursive(tracks, filter, typesToPrune)
-			if stack, ok := filtered.(*opentimelineio.Stack); ok {
+			if stack, ok := filtered.(*gotio.Stack); ok {
 				comp.SetTracks(stack)
 			}
 		}
 
-	case *opentimelineio.Stack:
+	case *gotio.Stack:
 		newChildren := filterChildren(comp.Children(), filter, typesToPrune)
 		comp.SetChildren(nil)
 		for _, child := range newChildren {
 			comp.AppendChild(child)
 		}
 
-	case *opentimelineio.Track:
+	case *gotio.Track:
 		newChildren := filterChildren(comp.Children(), filter, typesToPrune)
 		comp.SetChildren(nil)
 		for _, child := range newChildren {
 			comp.AppendChild(child)
 		}
 
-	case *opentimelineio.SerializableCollection:
-		var newChildren []opentimelineio.SerializableObject
+	case *gotio.SerializableCollection:
+		var newChildren []gotio.SerializableObject
 		for _, child := range comp.Children() {
 			filtered := filteredCompositionRecursive(child, filter, typesToPrune)
 			if filtered != nil {
@@ -107,11 +107,11 @@ func filteredCompositionRecursive(
 
 // filterChildren filters a slice of composable children.
 func filterChildren(
-	children []opentimelineio.Composable,
+	children []gotio.Composable,
 	filter FilterFunc,
 	typesToPrune []reflect.Type,
-) []opentimelineio.Composable {
-	var result []opentimelineio.Composable
+) []gotio.Composable {
+	var result []gotio.Composable
 
 	for _, child := range children {
 		// Check if this type should be pruned
@@ -135,9 +135,9 @@ func filterChildren(
 		// Process each resulting item
 		for _, item := range filtered {
 			// Recursively filter if it's a composition
-			if so, ok := item.(opentimelineio.SerializableObject); ok {
+			if so, ok := item.(gotio.SerializableObject); ok {
 				recursed := filteredCompositionRecursive(so, filter, typesToPrune)
-				if composable, ok := recursed.(opentimelineio.Composable); ok && composable != nil {
+				if composable, ok := recursed.(gotio.Composable); ok && composable != nil {
 					result = append(result, composable)
 				}
 			} else {
@@ -152,18 +152,18 @@ func filterChildren(
 // FilteredWithSequenceContext returns a filtered composition where the filter
 // function receives previous and next items for context-aware filtering.
 func FilteredWithSequenceContext(
-	root opentimelineio.SerializableObject,
+	root gotio.SerializableObject,
 	filter ContextFilterFunc,
 	typesToPrune []reflect.Type,
-) opentimelineio.SerializableObject {
+) gotio.SerializableObject {
 	return filteredWithContextRecursive(root, filter, typesToPrune)
 }
 
 func filteredWithContextRecursive(
-	obj opentimelineio.SerializableObject,
+	obj gotio.SerializableObject,
 	filter ContextFilterFunc,
 	typesToPrune []reflect.Type,
-) opentimelineio.SerializableObject {
+) gotio.SerializableObject {
 	if obj == nil {
 		return nil
 	}
@@ -180,33 +180,33 @@ func filteredWithContextRecursive(
 
 	// Process children if this is a composition
 	switch comp := cloned.(type) {
-	case *opentimelineio.Timeline:
+	case *gotio.Timeline:
 		if tracks := comp.Tracks(); tracks != nil {
 			filtered := filteredWithContextRecursive(tracks, filter, typesToPrune)
-			if stack, ok := filtered.(*opentimelineio.Stack); ok {
+			if stack, ok := filtered.(*gotio.Stack); ok {
 				comp.SetTracks(stack)
 			}
 		}
 
-	case *opentimelineio.Stack:
+	case *gotio.Stack:
 		newChildren := filterChildrenWithContext(comp.Children(), filter, typesToPrune)
 		comp.SetChildren(nil)
 		for _, child := range newChildren {
 			comp.AppendChild(child)
 		}
 
-	case *opentimelineio.Track:
+	case *gotio.Track:
 		newChildren := filterChildrenWithContext(comp.Children(), filter, typesToPrune)
 		comp.SetChildren(nil)
 		for _, child := range newChildren {
 			comp.AppendChild(child)
 		}
 
-	case *opentimelineio.SerializableCollection:
-		var newChildren []opentimelineio.SerializableObject
+	case *gotio.SerializableCollection:
+		var newChildren []gotio.SerializableObject
 		children := comp.Children()
 		for i, child := range children {
-			var prev, next opentimelineio.SerializableObject
+			var prev, next gotio.SerializableObject
 			if i > 0 {
 				prev = children[i-1]
 			}
@@ -215,18 +215,18 @@ func filteredWithContextRecursive(
 			}
 
 			// Apply context filter (wrapping in adapter)
-			if composable, ok := child.(opentimelineio.Composable); ok {
-				var prevComp, nextComp opentimelineio.Composable
+			if composable, ok := child.(gotio.Composable); ok {
+				var prevComp, nextComp gotio.Composable
 				if prev != nil {
-					prevComp, _ = prev.(opentimelineio.Composable)
+					prevComp, _ = prev.(gotio.Composable)
 				}
 				if next != nil {
-					nextComp, _ = next.(opentimelineio.Composable)
+					nextComp, _ = next.(gotio.Composable)
 				}
 
 				result := filter(prevComp, composable, nextComp)
 				for _, item := range result {
-					if so, ok := item.(opentimelineio.SerializableObject); ok {
+					if so, ok := item.(gotio.SerializableObject); ok {
 						filtered := filteredWithContextRecursive(so, filter, typesToPrune)
 						if filtered != nil {
 							newChildren = append(newChildren, filtered)
@@ -249,11 +249,11 @@ func filteredWithContextRecursive(
 
 // filterChildrenWithContext filters children with context.
 func filterChildrenWithContext(
-	children []opentimelineio.Composable,
+	children []gotio.Composable,
 	filter ContextFilterFunc,
 	typesToPrune []reflect.Type,
-) []opentimelineio.Composable {
-	var result []opentimelineio.Composable
+) []gotio.Composable {
+	var result []gotio.Composable
 
 	for i, child := range children {
 		// Check if this type should be pruned
@@ -269,7 +269,7 @@ func filterChildrenWithContext(
 		}
 
 		// Get context
-		var prev, next opentimelineio.Composable
+		var prev, next gotio.Composable
 		if i > 0 {
 			prev = children[i-1]
 		}
@@ -285,9 +285,9 @@ func filterChildrenWithContext(
 
 		// Process each resulting item
 		for _, item := range filtered {
-			if so, ok := item.(opentimelineio.SerializableObject); ok {
+			if so, ok := item.(gotio.SerializableObject); ok {
 				recursed := filteredWithContextRecursive(so, filter, typesToPrune)
-				if composable, ok := recursed.(opentimelineio.Composable); ok && composable != nil {
+				if composable, ok := recursed.(gotio.Composable); ok && composable != nil {
 					result = append(result, composable)
 				}
 			} else {
@@ -300,22 +300,22 @@ func filterChildrenWithContext(
 }
 
 // KeepFilter is a helper filter that keeps all items unchanged.
-func KeepFilter(composable opentimelineio.Composable) []opentimelineio.Composable {
-	return []opentimelineio.Composable{composable}
+func KeepFilter(composable gotio.Composable) []gotio.Composable {
+	return []gotio.Composable{composable}
 }
 
 // PruneFilter is a helper filter that removes all items.
-func PruneFilter(composable opentimelineio.Composable) []opentimelineio.Composable {
+func PruneFilter(composable gotio.Composable) []gotio.Composable {
 	return nil
 }
 
 // TypeFilter returns a filter that keeps only items of the specified types.
 func TypeFilter(keepTypes ...reflect.Type) FilterFunc {
-	return func(composable opentimelineio.Composable) []opentimelineio.Composable {
+	return func(composable gotio.Composable) []gotio.Composable {
 		itemType := reflect.TypeOf(composable)
 		for _, keepType := range keepTypes {
 			if itemType == keepType {
-				return []opentimelineio.Composable{composable}
+				return []gotio.Composable{composable}
 			}
 		}
 		return nil
@@ -324,10 +324,10 @@ func TypeFilter(keepTypes ...reflect.Type) FilterFunc {
 
 // NameFilter returns a filter that keeps only items with names matching the predicate.
 func NameFilter(predicate func(string) bool) FilterFunc {
-	return func(composable opentimelineio.Composable) []opentimelineio.Composable {
-		if so, ok := composable.(opentimelineio.SerializableObjectWithMetadata); ok {
+	return func(composable gotio.Composable) []gotio.Composable {
+		if so, ok := composable.(gotio.SerializableObjectWithMetadata); ok {
 			if predicate(so.Name()) {
-				return []opentimelineio.Composable{composable}
+				return []gotio.Composable{composable}
 			}
 		}
 		return nil

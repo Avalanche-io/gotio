@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // =============================================================================
@@ -16,22 +16,22 @@ import (
 // =============================================================================
 
 // createBenchmarkTrackForAlgo creates a track with n clips for algorithm benchmarks.
-func createBenchmarkTrackForAlgo(n int) *opentimelineio.Track {
-	track := opentimelineio.NewTrack("bench_track", nil, opentimelineio.TrackKindVideo, nil, nil)
+func createBenchmarkTrackForAlgo(n int) *gotio.Track {
+	track := gotio.NewTrack("bench_track", nil, gotio.TrackKindVideo, nil, nil)
 	for i := 0; i < n; i++ {
 		sr := opentime.NewTimeRange(
 			opentime.NewRationalTime(0, 24),
 			opentime.NewRationalTime(24, 24),
 		)
-		clip := opentimelineio.NewClip(fmt.Sprintf("clip_%d", i), nil, &sr, nil, nil, nil, "", nil)
+		clip := gotio.NewClip(fmt.Sprintf("clip_%d", i), nil, &sr, nil, nil, nil, "", nil)
 		track.AppendChild(clip)
 	}
 	return track
 }
 
 // createBenchmarkTracks creates a slice of tracks for FlattenTracks benchmarks.
-func createBenchmarkTracks(numTracks, clipsPerTrack int) []*opentimelineio.Track {
-	tracks := make([]*opentimelineio.Track, numTracks)
+func createBenchmarkTracks(numTracks, clipsPerTrack int) []*gotio.Track {
+	tracks := make([]*gotio.Track, numTracks)
 	for t := 0; t < numTracks; t++ {
 		tracks[t] = createBenchmarkTrackForAlgo(clipsPerTrack)
 		tracks[t].SetName(fmt.Sprintf("track_%d", t))
@@ -40,8 +40,8 @@ func createBenchmarkTracks(numTracks, clipsPerTrack int) []*opentimelineio.Track
 }
 
 // createBenchmarkStackForAlgo creates a stack with the specified number of tracks and clips.
-func createBenchmarkStackForAlgo(tracks, clipsPerTrack int) *opentimelineio.Stack {
-	stack := opentimelineio.NewStack("bench_stack", nil, nil, nil, nil, nil)
+func createBenchmarkStackForAlgo(tracks, clipsPerTrack int) *gotio.Stack {
+	stack := gotio.NewStack("bench_stack", nil, nil, nil, nil, nil)
 	for t := 0; t < tracks; t++ {
 		track := createBenchmarkTrackForAlgo(clipsPerTrack)
 		track.SetName(fmt.Sprintf("track_%d", t))
@@ -51,13 +51,13 @@ func createBenchmarkStackForAlgo(tracks, clipsPerTrack int) *opentimelineio.Stac
 }
 
 // createBenchmarkTimelineForAlgo creates a timeline with video tracks.
-func createBenchmarkTimelineForAlgo(tracks, clipsPerTrack int) *opentimelineio.Timeline {
-	timeline := opentimelineio.NewTimeline("bench_timeline", nil, nil)
+func createBenchmarkTimelineForAlgo(tracks, clipsPerTrack int) *gotio.Timeline {
+	timeline := gotio.NewTimeline("bench_timeline", nil, nil)
 	stack := timeline.Tracks()
 	for t := 0; t < tracks; t++ {
 		track := createBenchmarkTrackForAlgo(clipsPerTrack)
 		track.SetName(fmt.Sprintf("V%d", t+1))
-		track.SetKind(opentimelineio.TrackKindVideo)
+		track.SetKind(gotio.TrackKindVideo)
 		stack.AppendChild(track)
 	}
 	return timeline
@@ -250,9 +250,9 @@ func BenchmarkFilteredComposition_TypeFilter(b *testing.B) {
 		name := fmt.Sprintf("tracks=%d_clips=%d", c.tracks, c.clipsPerTrack)
 		b.Run(name, func(b *testing.B) {
 			stack := createBenchmarkStackForAlgo(c.tracks, c.clipsPerTrack)
-			filter := func(comp opentimelineio.Composable) []opentimelineio.Composable {
-				if _, ok := comp.(*opentimelineio.Clip); ok {
-					return []opentimelineio.Composable{comp}
+			filter := func(comp gotio.Composable) []gotio.Composable {
+				if _, ok := comp.(*gotio.Clip); ok {
+					return []gotio.Composable{comp}
 				}
 				return nil
 			}
@@ -353,7 +353,7 @@ func BenchmarkInsert(b *testing.B) {
 					opentime.NewRationalTime(0, 24),
 					opentime.NewRationalTime(24, 24),
 				)
-				clip := opentimelineio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
+				clip := gotio.NewClip("insert", nil, &sr, nil, nil, nil, "", nil)
 				midTime := opentime.NewRationalTime(float64(n)*24/2, 24)
 				b.StartTimer()
 				_ = Insert(clip, track, midTime)
@@ -409,7 +409,7 @@ func BenchmarkOverwrite(b *testing.B) {
 					opentime.NewRationalTime(0, 24),
 					opentime.NewRationalTime(48, 24),
 				)
-				clip := opentimelineio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
+				clip := gotio.NewClip("overwrite", nil, &sr, nil, nil, nil, "", nil)
 				// Create a time range for the overwrite (start at middle, 48 frames duration)
 				overwriteRange := opentime.NewTimeRange(
 					opentime.NewRationalTime(float64(n)*24/2, 24),
@@ -424,8 +424,8 @@ func BenchmarkOverwrite(b *testing.B) {
 
 func BenchmarkFill(b *testing.B) {
 	// Create a track with gaps
-	createTrackWithGaps := func(n int) *opentimelineio.Track {
-		track := opentimelineio.NewTrack("gapped", nil, opentimelineio.TrackKindVideo, nil, nil)
+	createTrackWithGaps := func(n int) *gotio.Track {
+		track := gotio.NewTrack("gapped", nil, gotio.TrackKindVideo, nil, nil)
 		for i := 0; i < n; i++ {
 			if i%2 == 0 {
 				// Add clip
@@ -433,11 +433,11 @@ func BenchmarkFill(b *testing.B) {
 					opentime.NewRationalTime(0, 24),
 					opentime.NewRationalTime(24, 24),
 				)
-				clip := opentimelineio.NewClip(fmt.Sprintf("clip_%d", i), nil, &sr, nil, nil, nil, "", nil)
+				clip := gotio.NewClip(fmt.Sprintf("clip_%d", i), nil, &sr, nil, nil, nil, "", nil)
 				track.AppendChild(clip)
 			} else {
 				// Add gap
-				gap := opentimelineio.NewGapWithDuration(opentime.NewRationalTime(24, 24))
+				gap := gotio.NewGapWithDuration(opentime.NewRationalTime(24, 24))
 				track.AppendChild(gap)
 			}
 		}
@@ -455,7 +455,7 @@ func BenchmarkFill(b *testing.B) {
 					opentime.NewRationalTime(0, 24),
 					opentime.NewRationalTime(24, 24),
 				)
-				fillClip := opentimelineio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
+				fillClip := gotio.NewClip("fill", nil, &sr, nil, nil, nil, "", nil)
 				// Fill at the first gap (index 1, so time = 24 frames)
 				gapTime := opentime.NewRationalTime(24, 24)
 				b.StartTimer()

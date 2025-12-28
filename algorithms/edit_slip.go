@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Slip moves an item's playhead through source media without changing position or duration.
@@ -19,7 +19,7 @@ import (
 // Parameters:
 //   - item: The item to slip
 //   - delta: Amount to move source start (positive = forward in source)
-func Slip(item opentimelineio.Item, delta opentime.RationalTime) error {
+func Slip(item gotio.Item, delta opentime.RationalTime) error {
 	if delta.Value() == 0 {
 		return nil
 	}

@@ -7,18 +7,18 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Helper function to create a test track with clips
-func createTestTrack(clipDurations []float64, rate float64) *opentimelineio.Track {
-	track := opentimelineio.NewTrack("test_track", nil, opentimelineio.TrackKindVideo, nil, nil)
+func createTestTrack(clipDurations []float64, rate float64) *gotio.Track {
+	track := gotio.NewTrack("test_track", nil, gotio.TrackKindVideo, nil, nil)
 	for i, dur := range clipDurations {
 		sr := opentime.NewTimeRange(
 			opentime.NewRationalTime(0, rate),
 			opentime.NewRationalTime(dur, rate),
 		)
-		clip := opentimelineio.NewClip(
+		clip := gotio.NewClip(
 			"clip_"+string(rune('A'+i)),
 			nil,
 			&sr,
@@ -30,20 +30,20 @@ func createTestTrack(clipDurations []float64, rate float64) *opentimelineio.Trac
 }
 
 // Helper function to create a test track with clips that have available ranges
-func createTestTrackWithAvailableRange(clipDurations []float64, availableRange float64, rate float64) *opentimelineio.Track {
-	track := opentimelineio.NewTrack("test_track", nil, opentimelineio.TrackKindVideo, nil, nil)
+func createTestTrackWithAvailableRange(clipDurations []float64, availableRange float64, rate float64) *gotio.Track {
+	track := gotio.NewTrack("test_track", nil, gotio.TrackKindVideo, nil, nil)
 	for i, dur := range clipDurations {
 		ar := opentime.NewTimeRange(
 			opentime.NewRationalTime(0, rate),
 			opentime.NewRationalTime(availableRange, rate),
 		)
-		ref := opentimelineio.NewExternalReference("", "file://test.mov", &ar, nil)
+		ref := gotio.NewExternalReference("", "file://test.mov", &ar, nil)
 
 		sr := opentime.NewTimeRange(
 			opentime.NewRationalTime(0, rate),
 			opentime.NewRationalTime(dur, rate),
 		)
-		clip := opentimelineio.NewClip(
+		clip := gotio.NewClip(
 			"clip_"+string(rune('A'+i)),
 			ref,
 			&sr,
@@ -167,7 +167,7 @@ func TestSplitItemAtTime(t *testing.T) {
 			// Create a track with a single clip
 			track := createTestTrack([]float64{tt.itemDuration}, rate)
 			children := track.Children()
-			item := children[0].(opentimelineio.Item)
+			item := children[0].(gotio.Item)
 			itemRange, _ := track.RangeOfChildAtIndex(0)
 
 			splitTime := opentime.NewRationalTime(tt.splitOffset, rate)
@@ -215,8 +215,8 @@ func TestClampToAvailableRange(t *testing.T) {
 		opentime.NewRationalTime(0, rate),
 		opentime.NewRationalTime(100, rate),
 	)
-	ref := opentimelineio.NewExternalReference("", "file://test.mov", &ar, nil)
-	clip := opentimelineio.NewClip("test", ref, nil, nil, nil, nil, "", nil)
+	ref := gotio.NewExternalReference("", "file://test.mov", &ar, nil)
+	clip := gotio.NewClip("test", ref, nil, nil, nil, nil, "", nil)
 
 	tests := []struct {
 		name       string
@@ -275,7 +275,7 @@ func TestCreateFillGap(t *testing.T) {
 
 	// With gap template
 	templateRange := opentime.NewTimeRange(opentime.RationalTime{}, opentime.NewRationalTime(48, 24))
-	template := opentimelineio.NewGap("template", &templateRange, nil, nil, nil, nil)
+	template := gotio.NewGap("template", &templateRange, nil, nil, nil, nil)
 	gap = createFillGap(duration, template)
 	if gap == nil {
 		t.Fatal("expected non-nil gap")
@@ -315,7 +315,7 @@ func TestGetPreviousNextItem(t *testing.T) {
 func TestAdjustItemDuration(t *testing.T) {
 	rate := 24.0
 	track := createTestTrack([]float64{48}, rate)
-	item := track.Children()[0].(opentimelineio.Item)
+	item := track.Children()[0].(gotio.Item)
 
 	// Extend duration
 	delta := opentime.NewRationalTime(12, rate)

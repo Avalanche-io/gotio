@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Fill places an item into a gap using 3/4-point edit logic.
@@ -22,8 +22,8 @@ import (
 //   - trackTime: Time in the track where the gap exists
 //   - referencePoint: How to fit the clip to the gap
 func Fill(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	trackTime opentime.RationalTime,
 	referencePoint ReferencePoint,
 ) error {
@@ -38,7 +38,7 @@ func Fill(
 	}
 
 	// Verify it's a gap
-	gap, isGap := gapItem.(*opentimelineio.Gap)
+	gap, isGap := gapItem.(*gotio.Gap)
 	if !isGap {
 		return newEditError("fill", "item at time is not a gap")
 	}
@@ -50,7 +50,7 @@ func Fill(
 	}
 
 	// Clone the item
-	clonedItem := item.Clone().(opentimelineio.Item)
+	clonedItem := item.Clone().(gotio.Item)
 
 	// Get clip's source range
 	var clipRange opentime.TimeRange
@@ -85,8 +85,8 @@ func Fill(
 
 // fillSequence trims the clip to fit exactly in the gap.
 func fillSequence(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	gapIndex int,
 	gapRange opentime.TimeRange,
 	clipRange opentime.TimeRange,
@@ -117,7 +117,7 @@ func fillSequence(
 
 		// Create remaining gap
 		remainingDuration := gapDuration.Sub(clipDuration)
-		remainingGap := opentimelineio.NewGapWithDuration(remainingDuration)
+		remainingGap := gotio.NewGapWithDuration(remainingDuration)
 		return comp.InsertChild(gapIndex+1, remainingGap)
 	} else {
 		// Exact fit
@@ -134,8 +134,8 @@ func fillSequence(
 
 // fillFit adds a LinearTimeWarp to stretch/compress the clip to fit the gap.
 func fillFit(
-	item opentimelineio.Item,
-	comp opentimelineio.Composition,
+	item gotio.Item,
+	comp gotio.Composition,
 	gapIndex int,
 	gapRange opentime.TimeRange,
 	clipRange opentime.TimeRange,
@@ -152,7 +152,7 @@ func fillFit(
 	timeScalar := clipDuration.Value() / gapDuration.Value()
 
 	// Create LinearTimeWarp effect
-	timeWarp := opentimelineio.NewLinearTimeWarp("time_fit", "LinearTimeWarp", timeScalar, nil)
+	timeWarp := gotio.NewLinearTimeWarp("time_fit", "LinearTimeWarp", timeScalar, nil)
 
 	// Add effect to item
 	effects := item.Effects()

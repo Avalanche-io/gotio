@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 func TestOverwriteAppendAfterEnd(t *testing.T) {
@@ -20,7 +20,7 @@ func TestOverwriteAppendAfterEnd(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(48, 24),
@@ -42,7 +42,7 @@ func TestOverwriteAppendAfterEnd(t *testing.T) {
 		t.Errorf("child 0: expected clip_A, got %s", children[0].Name())
 	}
 
-	if _, ok := children[1].(*opentimelineio.Gap); !ok {
+	if _, ok := children[1].(*gotio.Gap); !ok {
 		t.Errorf("child 1: expected Gap, got %T", children[1])
 	}
 	gapDur, _ := children[1].Duration()
@@ -65,7 +65,7 @@ func TestOverwriteAtEnd(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(24, 24),
@@ -100,7 +100,7 @@ func TestOverwriteMiddle(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(12, 24),
@@ -149,7 +149,7 @@ func TestOverwriteSpanningMultiple(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(48, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(12, 24),
@@ -198,7 +198,7 @@ func TestOverwriteReplaceEntireClip(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(24, 24),
@@ -227,13 +227,13 @@ func TestOverwriteReplaceEntireClip(t *testing.T) {
 }
 
 func TestOverwriteEmptyComposition(t *testing.T) {
-	track := opentimelineio.NewTrack("empty", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("empty", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(0, 24),
@@ -256,13 +256,13 @@ func TestOverwriteEmptyComposition(t *testing.T) {
 }
 
 func TestOverwriteEmptyCompositionWithGap(t *testing.T) {
-	track := opentimelineio.NewTrack("empty", nil, opentimelineio.TrackKindVideo, nil, nil)
+	track := gotio.NewTrack("empty", nil, gotio.TrackKindVideo, nil, nil)
 
 	sr := opentime.NewTimeRange(
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	// Start at frame 24, not 0
 	overwriteRange := opentime.NewTimeRange(
@@ -280,7 +280,7 @@ func TestOverwriteEmptyCompositionWithGap(t *testing.T) {
 		t.Fatalf("expected 2 children, got %d", len(children))
 	}
 
-	if _, ok := children[0].(*opentimelineio.Gap); !ok {
+	if _, ok := children[0].(*gotio.Gap); !ok {
 		t.Errorf("child 0: expected Gap, got %T", children[0])
 	}
 	gapDur, _ := children[0].Duration()
@@ -303,7 +303,7 @@ func TestOverwritePreservesTrackDuration(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(24, 24),
@@ -334,7 +334,7 @@ func TestOverwriteAtStart(t *testing.T) {
 		opentime.NewRationalTime(0, 24),
 		opentime.NewRationalTime(24, 24),
 	)
-	newClip := opentimelineio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
+	newClip := gotio.NewClip("X", nil, &sr, nil, nil, nil, "", nil)
 
 	overwriteRange := opentime.NewTimeRange(
 		opentime.NewRationalTime(0, 24),

@@ -5,7 +5,7 @@ package algorithms
 
 import (
 	"github.com/Avalanche-io/gotio/opentime"
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 // Slide moves an item's position by adjusting the previous item's duration.
@@ -22,8 +22,8 @@ import (
 //   - composition: The composition containing the item
 //   - delta: Amount to slide (positive = right, negative = left)
 func Slide(
-	item opentimelineio.Item,
-	composition opentimelineio.Composition,
+	item gotio.Item,
+	composition gotio.Composition,
 	delta opentime.RationalTime,
 ) error {
 	if delta.Value() == 0 {

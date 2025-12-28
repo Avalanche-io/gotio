@@ -32,7 +32,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/Avalanche-io/gotio/opentimelineio"
+	"github.com/Avalanche-io/gotio"
 )
 
 //go:embed bridge.py
@@ -326,21 +326,21 @@ func (b *Bridge) AvailableFormats() []FormatInfo {
 
 // Read reads a file and returns an OTIO object.
 // The format is auto-detected based on the file extension.
-func (b *Bridge) Read(path string) (opentimelineio.SerializableObject, error) {
+func (b *Bridge) Read(path string) (gotio.SerializableObject, error) {
 	ext := strings.ToLower(filepath.Ext(path))
 	return b.ReadWithFormat(ext, path)
 }
 
 // Write writes an OTIO object to a file.
 // The format is auto-detected based on the file extension.
-func (b *Bridge) Write(obj opentimelineio.SerializableObject, path string) error {
+func (b *Bridge) Write(obj gotio.SerializableObject, path string) error {
 	ext := strings.ToLower(filepath.Ext(path))
 	return b.WriteWithFormat(ext, obj, path)
 }
 
 // ReadWithFormat reads a file using a specific format.
 // Format can be either a suffix (e.g., ".edl") or adapter name (e.g., "cmx_3600").
-func (b *Bridge) ReadWithFormat(format, path string) (opentimelineio.SerializableObject, error) {
+func (b *Bridge) ReadWithFormat(format, path string) (gotio.SerializableObject, error) {
 	// Normalize format to look up in map
 	f := strings.ToLower(format)
 	if !strings.HasPrefix(f, ".") && b.formatMap[f].Name == "" {
@@ -371,12 +371,12 @@ func (b *Bridge) ReadWithFormat(format, path string) (opentimelineio.Serializabl
 		return nil, fmt.Errorf("python adapter error: %w", err)
 	}
 
-	return opentimelineio.FromJSONString(otioJSON)
+	return gotio.FromJSONString(otioJSON)
 }
 
 // WriteWithFormat writes an OTIO object to a file using a specific format.
 // Format can be either a suffix (e.g., ".edl") or adapter name (e.g., "cmx_3600").
-func (b *Bridge) WriteWithFormat(format string, obj opentimelineio.SerializableObject, path string) error {
+func (b *Bridge) WriteWithFormat(format string, obj gotio.SerializableObject, path string) error {
 	// Normalize format to look up in map
 	f := strings.ToLower(format)
 	if !strings.HasPrefix(f, ".") && b.formatMap[f].Name == "" {
@@ -394,7 +394,7 @@ func (b *Bridge) WriteWithFormat(format string, obj opentimelineio.SerializableO
 	}
 
 	// Serialize to OTIO JSON
-	otioJSON, err := opentimelineio.ToJSONString(obj, "")
+	otioJSON, err := gotio.ToJSONString(obj, "")
 	if err != nil {
 		return fmt.Errorf("failed to serialize OTIO: %w", err)
 	}
